@@ -1,12 +1,22 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Kalkulator przepisów
+Repozytoria:
+[Frontend](https://github.com/CelularBat/KalkulatorPrzepisow_Frontend_v2) 
+[Backend](https://github.com/CelularBat/KalkulatorPrzepisow_BackEnd)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Społecznościowa aplikacja webowa do dzielenia się przepisami o ściśle wyliczonej wartości odżywczej, liczonej automatycznie. Projekt ma ułatwiać wspłódzielenie pomysłów na przepisy w restrykcyjnych dietach, takich jak dieta ketogeniczna, dieta wegańska niskowęglowodanowa ,czy inne wymagające diety eliminacyjne.
+### Podgląd:
+ https://kalkulatorprzepisow-backend.onrender.com/
+## Struktura
+W skład projektu wchodzą dwa repozytoria: Frontend i Backend. Rozdzielone ze względu na większą elastyczność.
+Projekt integruje trzy bazy danych: bazę kont uzytkowników, bazę produktów (z ich składem odzywczym) oraz bazę przepisów
+## Deployment
+Zbuduj Frontend
+`npm run build`
+zawartość katalogu dist/ skopiuj do katalogu CLIENT_dist/
+zbuduj Backend
+`npm run build`
+Gotowe
+## Development
+Zbuduj oba projekty:
+`npm run dev`

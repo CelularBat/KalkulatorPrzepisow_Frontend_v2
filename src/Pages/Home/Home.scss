@@ -1,0 +1,55 @@
+$shadow-dark: rgba(0, 0, 0, 0.4);
+$secondary-color: #ffc107; 
+$border-color: #ccc;
+$screen-width-limit: 70vw; 
+$screen-height-limit: 90vh; 
+
+$reduced-padding: 8px; 
+$font-size-base: 0.9em; 
+$font-size-header: 1.8em; 
+$font-size-button: 1.0em; 
+$line-height-header: 3px; 
+
+.Home{
+    display: flex;
+    place-content: center;
+    min-height: 70vh;
+    min-width: 90vw;
+    margin-top: 30px;
+}
+
+.WelcomeScreen{
+    width:70%;
+    border: 3px solid $g_primary_color2;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 
+        10px 10px 20px $shadow-dark; /* Dolny/Prawy cień */
+
+    text-align: center;
+
+    h2 {
+        @include header-h2();
+    }
+
+    .header-line {
+        display: block;
+        height: $line-height-header;
+        background-color: $secondary-color;
+        width: 70%; 
+        margin: 0 auto 15px auto; 
+    }
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+
+        margin-top: 50px;
+    }
+    li{ text-align: left;
+        font-size: 1.3em;
+        
+
+    }
+}

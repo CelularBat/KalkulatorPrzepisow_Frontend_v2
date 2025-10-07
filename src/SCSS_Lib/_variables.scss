@@ -1,0 +1,23 @@
+// :root{ // moved to index.css
+//     --primary-color1:#955DFF;
+//     --primary-color2:#6FAAFF;
+// }
+/* Vars to export for dynamic use [It's hacky, don't use SCSS functions on them]*/
+$g_primary_color1: var(--primary-color1);
+$g_primary_color2: var(--primary-color2);
+
+$g_primaryColorGradient: linear-gradient(to left, $g_primary_color1, $g_primary_color2);
+$g_primaryColorGradient_reversed: linear-gradient(to right, $g_primary_color1, $g_primary_color2);
+
+$g_breakpoint-md: 768px;
+
+$g_Font_handwritting: 'Cursive', 'Segoe Script', 'Brush Script MT', sans-serif; 
+
+@mixin header-h2(){
+        text-align: center;
+        font-size: 1.8em;
+        margin-bottom: 5px;
+        font-family: $g_Font_handwritting;
+        font-weight: 800;
+        margin-top: 2px;
+}

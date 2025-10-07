@@ -1,0 +1,31 @@
+:root{ 
+  --primary-color1:#955DFF;
+  --primary-color2:#6FAAFF;
+  --backgroud-color:#fff7ed;;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--backgroud-color);
+  font-family: "Inter", sans-serif;
+}
+
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+
+  padding: 15px;
+  flex:1;
+}
+
+

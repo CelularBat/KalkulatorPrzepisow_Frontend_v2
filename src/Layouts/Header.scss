@@ -1,0 +1,25 @@
+nav{
+    background: $g_primaryColorGradient;
+    height: 60px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100vw;
+    position: relative;
+    padding-left: 15px;
+    box-shadow: 2px 3px 2px $g_primary_color1;
+    z-index: 999;
+
+    @media (max-width: $g_breakpoint-md) {
+      flex-wrap: wrap;
+      height: fit-content;
+      padding-top: 10px;
+    }
+  }
+
+  nav >a{
+    align-self: center;
+    flex:1;
+  }
+
+  

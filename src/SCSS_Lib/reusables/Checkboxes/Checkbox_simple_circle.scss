@@ -1,0 +1,13 @@
+@use './_Checkbox_simple_circle' as a;
+
+.Checkbox_simple_circle {
+  @include a.Checkbox_simple_circle();
+  
+  &.red { @include a.modColor(red); }
+  &.yellow { @include a.modColor(yellow); }
+  &.green { @include a.modColor(green); }
+  &.blue { @include a.modColor(blue); }
+  &.gray { @include a.modColor(gray); }
+  &.black { @include a.modColor(black); }
+  &.violet { @include a.modColor(violet); }
+}

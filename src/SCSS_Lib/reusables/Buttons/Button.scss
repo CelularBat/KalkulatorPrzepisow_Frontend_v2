@@ -1,0 +1,7 @@
+@use '-/effects' as eff;
+
+.Button{
+    background-color: blue;
+    width:200px;
+    @include eff.glowEffect(gold,19px);
+}

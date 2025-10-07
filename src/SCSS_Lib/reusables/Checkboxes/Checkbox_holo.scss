@@ -1,0 +1,14 @@
+@use './_Checkbox_holo' as *;
+
+
+.Checkbox_holo{
+    @include Checkbox_holo();
+
+    &.red{
+        @include modColor(red,rgb(236, 214, 11),)
+    }
+    &.tableBar{
+        @include modColor($contentColorOff: red);
+        @include modSize(30px,30px);
+    }
+}

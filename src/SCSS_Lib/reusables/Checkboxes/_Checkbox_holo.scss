@@ -1,0 +1,118 @@
+
+
+@mixin Checkbox_holo(
+    $baseBgOn: #2B733C,
+    $contentColorOn: #FFF,
+    $contentColorOff: #8CBEBE,
+    $baseBgOff: #FFF,
+    $width: 55px,
+    $height: 55px
+   
+) {
+    // Derived variables
+    $backgroundColorOn: linear-gradient($baseBgOn, lighten($baseBgOn, 5%), darken($baseBgOn, 5%)); // **calculated from base color**
+    $backgroundColorOff: linear-gradient($baseBgOff, darken($baseBgOff, 5%), darken($baseBgOff, 5%));
+
+    $shadowChecked: lighten(saturate(adjust-hue($baseBgOn, -33deg), 47%), 19%);
+
+    width: $width;
+    height: $height;
+
+    position: relative;
+
+    input {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        z-index: 1;
+        top: 0;
+        left: 0;
+
+        &:checked {
+            & ~ span {
+                box-shadow: inset 0 -5px 0 0 rgba(0, 0, 0, 0.2), 0 2px 10px rgba(0, 0, 0, 0.75);
+                background: $backgroundColorOn;
+            }
+            & ~ .content {
+                top: -3px;
+                color: $contentColorOn;
+                filter: drop-shadow(0 0 5px $shadowChecked) drop-shadow(0 0 8px $shadowChecked) drop-shadow(0 0 12px $shadowChecked) drop-shadow(0 0 20px $shadowChecked) drop-shadow(0 0 5px $shadowChecked);
+            }
+        }
+    }
+
+    span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        background: $backgroundColorOff;
+        border-radius: 5px;
+        box-shadow: inset 0 5px 1px 0 rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.1), 0 -5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .content {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 1.5rem;
+        color: $contentColorOff;
+        user-select: none;
+        font-size: 1.8rem;
+    }
+}
+
+
+@mixin modColor(
+$baseBgOn: #2B733C,
+$contentColorOn: #FFF,
+$contentColorOff: #8CBEBE,
+$baseBgOff: #FFF
+) {
+    $backgroundColorOn: linear-gradient($baseBgOn, lighten($baseBgOn, 5%), darken($baseBgOn, 5%)); 
+    $backgroundColorOff: linear-gradient($baseBgOff, darken($baseBgOff, 5%), darken($baseBgOff, 5%));
+
+    $shadowChecked: lighten(saturate(adjust-hue($baseBgOn, -33deg), 47%), 19%);
+
+    input {
+        &:checked {
+            & ~ span {
+                box-shadow: inset 0 -5px 0 0 rgba(0, 0, 0, 0.2), 0 2px 10px rgba(0, 0, 0, 0.75);
+                background: $backgroundColorOn;
+            }
+            & ~ .content {
+                color: $contentColorOn;
+                filter: drop-shadow(0 0 5px $shadowChecked) drop-shadow(0 0 8px $shadowChecked) drop-shadow(0 0 12px $shadowChecked) drop-shadow(0 0 20px $shadowChecked) drop-shadow(0 0 5px $shadowChecked);
+            }
+        }
+    }
+    span {
+        background: $backgroundColorOff;
+    }
+    .content {
+        color: $contentColorOff;
+    }
+}
+
+
+@mixin modSize(
+    $width: 55px,
+    $height: 55px){
+        // Maybe we should adjust shados box here later
+        width: $width;
+        height: $height;
+
+}

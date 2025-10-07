@@ -1,0 +1,169 @@
+$primary-color: #007bff;
+$secondary-color: #ffc107; 
+$border-color: #ccc;
+$screen-width-limit: 70vw; 
+$screen-height-limit: 90vh; 
+
+$reduced-padding: 8px; 
+$font-size-base: 0.9em; 
+$font-size-button: 1.0em; 
+$line-height-header: 3px; 
+
+$input-text-max-width: 250px; 
+$input-number-max-width: 60px; 
+
+$shadow-dark: rgba(0, 0, 0, 0.4);
+
+
+.ProductForm {
+    max-width: $screen-width-limit;
+    min-width:700px;
+    max-height: $screen-height-limit;
+    margin: 20px auto;
+    padding: $reduced-padding*1.3; 
+    border: 2px solid $g_primary_color2;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 
+        10px 10px 20px $shadow-dark; /* Dolny/Prawy cień */
+
+    
+    font-size: $font-size-base; 
+    font-family: "Raleway", sans-serif;
+
+    h2 {
+        @include header-h2();
+    }
+
+    .header-line {
+        display: block;
+        height: $line-height-header;
+        background-color: $secondary-color;
+        width: 70%; 
+        margin: 0 auto 15px auto; 
+    }
+
+    .form-content-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 15px; 
+        justify-content: space-between;
+        margin-bottom: 20px; /* Dodatkowy margines przed nowym wierszem */
+    }
+
+    .left-column-groups {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 52%; /* Zwiększenie szerokości na lewą i środkową kolumnę */
+        min-width: 150px; 
+        gap: 15px;
+    }
+
+    .nutritional-value-group{
+        flex: 1 1 50%; 
+        min-width: 200px; 
+    }
+
+    
+    .product-info-group, .energy-value-group, .nutritional-value-group, .link-group {
+        padding: $reduced-padding;
+        border: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .nutritional-value-group, .product-info-group, .energy-value-group {
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px; 
+            
+            input[type="number"], .InputNumber {
+                width: $input-number-max-width; 
+                max-width: $input-number-max-width;
+            }
+        }
+    }
+
+
+    .link-group {
+        width: 100%; 
+        margin-bottom: 5px; 
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+
+        label{
+            z-index: 0;
+            display: flex;
+            gap: 5px;
+        }
+
+        label[for="link"] {
+            margin-bottom: 0;
+            align-items: center;
+            width: 90%;
+ 
+        }
+        
+        
+        input[type="text"] {
+            flex-grow: 1;
+            max-width: none; 
+        }
+    }
+    
+    label, p {
+        margin-bottom: 5px; 
+    }
+    
+    input[type="text"], input[type="number"], .InputNumber {
+        padding: 5px 6px; 
+        margin-top: 3px; 
+        border: 1px solid $border-color;
+        border-radius: 3px;
+    }
+    
+    input[type="text"] {
+        width: $input-text-max-width;
+    }
+
+
+    .button-group {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px; 
+        gap: 10px; 
+        position: relative;
+        z-index: 1;
+    }
+
+    
+    @media (max-width: $g_breakpoint-md) {
+        &{
+            min-width:99vw;
+            min-height: 99vh;
+            overflow: auto; 
+            
+        }
+
+        .form-content-wrapper {
+            flex-direction: column; 
+            gap: 10px;
+        }
+        .left-column-groups, .nutritional-value-group, .link-group {
+            flex: 1 1 100%; 
+            min-width: auto;
+        }
+        .link-group {
+            align-self: flex-start; 
+        }
+        #btn_clear{
+            width:40%;
+        }
+    }
+}

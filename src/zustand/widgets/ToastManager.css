@@ -1,0 +1,84 @@
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 5vw;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+  }
+  
+  /* Base Toast Style */
+  .toast {
+    height: 150px;
+    width:200px;
+
+    position:relative;
+    border-radius: 8px;
+    font-family: Montserrat, Roboto, sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    
+    color: #fff;
+  text-shadow:
+    /* cienki ostry kontur */
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+    /* rozmyta poświata (opcjonalna, usuń jeśli chcesz czysty kontur) */
+     0 0 6px rgba(0,0,0,0.6);
+    
+    white-space: normal;
+   
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* dopasowuje liść do rozmiaru toastu */
+
+    word-break: break-word;
+    padding-top: 20%;
+    text-align: center;
+  }
+
+  .toast-text{
+    position:relative;
+    width:70%;
+    left:20%;
+
+
+
+  }
+  
+  /* Success toast with black border and shake animation */
+  .toast.success {
+    background-image: url('salata.png'); 
+    animation: shake 0.6s ease-in-out;
+  }
+  
+  /* Error toast with red, thicker border */
+  .toast.error {
+    height: 190px;
+    background-image: url('pomidor.png'); 
+    animation: shake 0.8s ease-in-out;
+  }
+  
+  /* Optional additional types */
+  .toast.info {
+    border-color: #3498db;
+  }
+  .toast.warning {
+    border-color: #f39c12;
+  }
+  
+
+  
+  @keyframes shake {
+    0%   { transform: translateX(0) rotate(0deg); }
+    20%  { transform: translateX(-5px) rotate(-3deg); }
+    40%  { transform: translateX(5px) rotate(3deg); }
+    60%  { transform: translateX(-4px) rotate(-2deg); }
+    80%  { transform: translateX(4px) rotate(2deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+  }
+  

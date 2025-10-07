@@ -1,0 +1,78 @@
+.UserPanel{
+    flex:0.5;
+    
+    display: flex;
+    flex-direction: column;
+  
+    max-width: 250px;
+    margin-top: 5px;
+    margin-right: 10px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+
+    -webkit-animation: hi 0.5s;
+            animation: hi 0.5s;
+    -webkit-transform: translateZ(0px);
+    transform: translateZ(0px);
+    z-index: 9;
+    position: relative;
+
+    padding: 0px;
+
+    background: #F8F2ED;
+    font-family: "Raleway", sans-serif;
+    color: #FFF;
+ 
+}
+
+.UserPanel.shrinked{
+    transition: max-height 2s ease;
+    transition: min-height 2s ease;
+    min-height: 49px;
+    max-height: 49px;
+    overflow: hidden;
+}
+
+.UserPanel--static{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    max-height: 50px;
+    height: 50px;
+    padding: 1px 6px;
+    background: #FFF;
+    color: #5D708A;
+    text-align: center;
+    line-height: 50px;
+    transition: all 0.2s;
+    font-size: 1.5em;
+    transform: scale(1);
+    transition: all 0.2s;
+
+}
+
+.UserPanel--pages{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 15px;
+    background: linear-gradient(to left, #955DFF, #6FAAFF);
+}
+
+
+.UserPanel--avatar{
+    aspect-ratio: 1;
+    height: 100%;
+}
+
+.UserPanel--btn-logout{
+    background: rgba(0, 0, 0, 0.5);
+    color: #F6F7F9;
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+}

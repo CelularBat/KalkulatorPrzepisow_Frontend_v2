@@ -1,0 +1,14 @@
+.Button{   
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.Button_cancel{background-color: red;}
+.Button_cancel:hover{background-color: rgb(204, 59, 59);}
+
+.Button_ok{background-color: green;}
+.Button_ok:hover{background-color: #006064;}
+

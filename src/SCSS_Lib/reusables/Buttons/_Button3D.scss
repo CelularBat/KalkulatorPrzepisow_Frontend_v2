@@ -1,0 +1,203 @@
+@use "sass:color";
+// Based on project: https://uiverse.io/njesenberger/thin-owl-11
+
+@mixin Button3D($primaryColor, $fontColor,$height: 52px) {
+    $top-bg-start: $primaryColor;
+    $top-bg-end: color.scale($primaryColor, $lightness: -20%);
+    $bottom-bg-color: color.scale($primaryColor, $lightness: -50%);
+    $bottom-bg-shadow1: rgba(255, 255, 255, 0.25);
+    $bottom-bg-shadow2: rgba(0, 0, 0, 0.5);
+    $bottom-bg-shadow3: rgba(0, 0, 0, 0.4);
+    $base-bg-color: rgba(0, 0, 0, 0.15);
+    $base-shadow-light: rgba(255, 255, 255, 0.75);
+    $base-shadow-dark: rgba(0, 0, 0, 0.25);
+
+    // Scale factors based on original 52px height
+    $top-height: $height - 28px;
+    $bottom-heights: $height - 10px;
+    $base-heights: $height - 4px;
+
+    $glowColor: rgba(255, 255, 100, 0.6);
+  
+    & {
+        height: $height;
+        white-space: pre-wrap;
+      -webkit-appearance: none;
+      appearance: none;
+      position: relative;
+      border-width: 0;
+      padding: 0 8px 12px;
+      min-width: 3em;
+      box-sizing: border-box;
+      background: transparent;
+      font: inherit;
+      cursor: pointer;
+  
+      >.button-top {
+        height: $top-height;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 0;
+        padding: 8px 16px;
+        transform: translateY(0);
+        text-align: center;
+        color: $fontColor;
+        text-shadow: 0 -1px rgba(0, 0, 0, .25);
+        transition-property: transform;
+        transition-duration: .2s;
+        -webkit-user-select: none;
+        user-select: none;
+        box-sizing: content-box;
+        transition: color 3s ease, text-shadow 1s ease, transform .2s ease;
+  
+        &::after {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          border-radius: 4px;
+          width: 100%;
+          height: 100%;
+          
+          background-image: radial-gradient($top-bg-start, $top-bg-end);
+          box-shadow:
+            inset 0 0 0px 1px $bottom-bg-shadow1,
+            0 1px 2px 1px $bottom-bg-shadow1;
+          transition-property: border-radius, padding, width, transform;
+          transition-duration: .2s;
+        }
+      }
+  
+      >.button-bottom {
+        height: $bottom-heights;
+        position: absolute;
+        z-index: -1;
+        bottom: 4px;
+        left: 4px;
+        border-radius: 8px / 16px 16px 8px 8px;
+        padding-top: 6px;
+        width: calc(100% - 8px);
+        
+        box-sizing: content-box;
+        background-color: $bottom-bg-color;
+        background-image:
+          radial-gradient(4px 8px at 4px calc(100% - 8px), $bottom-bg-shadow1, transparent),
+          radial-gradient(4px 8px at calc(100% - 4px) calc(100% - 8px), $bottom-bg-shadow1, transparent),
+          radial-gradient(16px at -4px 0, white, transparent),
+          radial-gradient(16px at calc(100% + 4px) 0, white, transparent);
+        box-shadow:
+          0px 2px 3px 0px $bottom-bg-shadow2,
+          inset 0 -1px 3px 3px $bottom-bg-shadow3;
+        transition-property: border-radius, padding-top;
+        transition-duration: .2s;
+      }
+  
+      >.button-base {
+        height: $base-heights;
+        position: absolute;
+        z-index: -2;
+        top: 4px;
+        left: 0;
+        border-radius: 12px;
+        width: 100%;
+        box-sizing: content-box;
+       
+        background-color: $base-bg-color;
+        box-shadow:
+          0 1px 1px 0 $base-shadow-light,
+          inset 0 2px 2px $base-shadow-dark;
+      }
+
+    // on click  
+      &:active {
+        .button-top {
+          transform: translateY(6px);
+  
+          &::after {
+            border-radius: 6px;
+            padding: 0 2px;
+          }
+        }
+  
+        >.button-bottom {
+          border-radius: 10px 10px 8px 8px / 8px;
+          padding-top: 0;
+        }
+      }
+      // on hover
+      &:hover {
+        .button-top {
+          color: red;
+          &::after {
+            background-image: radial-gradient(lighter($top-bg-start,30) ,lighter($top-bg-end,30) );
+          }
+        }
+        
+      }
+
+    // Selected glowing effect
+      &.selected {
+        > .button-top::after {
+          background-image: radial-gradient(circle at center, $glowColor 0%, transparent 40%), 
+                            radial-gradient($top-bg-start, $top-bg-end);
+        }
+      }
+   }
+  }
+  
+  
+  @mixin Button3D-modColor($primaryColor, $fontColor) {
+    $top-bg-start: $primaryColor;
+    $top-bg-end: color.scale($primaryColor, $lightness: -20%);
+    $bottom-bg-color: color.scale($primaryColor, $lightness: -50%);
+  
+    & {
+      >.button-top {
+        color: $fontColor;
+  
+        &::after {
+          background-image: radial-gradient($top-bg-start, $top-bg-end);
+        }
+      }
+  
+      >.button-bottom {
+        background-color: $bottom-bg-color;
+      }
+    }
+  }
+
+  @mixin Button3D-modFontColor($fontColor, $shadows...) {
+    & {
+      > .button-top {
+        color: $fontColor;
+        @if length($shadows) > 0 {
+          text-shadow: $shadows;
+        }
+      }
+    }
+  }
+  
+
+  @mixin Button3D-modHeight($height: 52px) {
+    // Derived dimensions
+    $top-height: $height - 28px;
+    $bottom-height: $height - 10px;
+    $base-height: $height - 4px;
+  
+    & {
+      height: $height;
+  
+      >.button-top {
+        height: $top-height;
+      }
+  
+      >.button-bottom {
+        height: $bottom-height;
+      }
+  
+      >.button-base {
+        height: $base-height;
+      }
+    }
+  }

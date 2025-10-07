@@ -1,0 +1,61 @@
+@mixin glowEffect($primaryColor, $glowRadius) {
+    $animationName: glowEffectAnim;
+  
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
+    transition: all 0.2s ease-in;
+  
+    &:hover {
+      background: $primaryColor;
+      box-shadow: 0 0 30px ($glowRadius / 6) rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.815);
+      transition: all 0.2s ease-out;
+    }
+  
+    &:active {
+      $lighter-bg: lighten($primaryColor, 15%);
+      $darker-shadow-color: rgba(
+        max(red($primaryColor) - red($primaryColor) * 0.3, 0),
+        max(green($primaryColor) - green($primaryColor) * 0.3, 0),
+        max(blue($primaryColor) - blue($primaryColor) * 0.3, 0),
+        0.815
+      );
+      background: $lighter-bg;
+      box-shadow: 0 0 calc(30px * 1.3) calc(($glowRadius / 6) * 1.3) $darker-shadow-color;
+      transition: box-shadow 0.2s ease-in;
+      transform: scale(1.05);
+    }
+  
+    &::before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 86%;
+      position: absolute;
+      top: 7%;
+      left: 0;
+      opacity: 0;
+      background: #fff;
+      box-shadow: 0 0 50px 30px #fff;
+      transform: skewX(-20deg);
+    }
+  
+    &:hover::before {
+      animation: #{$animationName} 0.5s 0s linear;
+    }
+  
+    @keyframes #{$animationName} {
+      0% {
+        opacity: 0;
+        left: 0%;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        left: 100%;
+      }
+    }
+  }
+  

@@ -1,0 +1,18 @@
+.Table_Wrapper{
+    margin-block: 5px;;
+}
+.Table_Wrapper-header{
+    background: $g_primaryColorGradient;
+    height: 35px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    gap:19px;
+
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+}

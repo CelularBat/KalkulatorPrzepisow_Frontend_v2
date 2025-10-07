@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src",
+      "paths": {
+        "@re/*": ["SCSS_Lib/reusables/*"],
+        "@effects/*": ["SCSS_Lib/effects/*"],
+        "@pages/*": ["Pages/*"],
+        "@layouts/*": ["Layouts/*"],
+        "@zustand/*": ["zustand/*"],
+        "@utils/*": ["src/Utils/*"]
+      }
+    },
+    "include": ["src"]
+  }
+  

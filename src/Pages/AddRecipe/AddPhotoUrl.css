@@ -1,0 +1,43 @@
+
+
+.AddPhotoURL .preview-container{
+    width:100px;
+    height: 100px;
+    position:relative;
+}
+
+.AddPhotoURL .preview-container > img{
+    width:100%
+    
+    
+}
+
+
+.AddPhotoURL .preview-container .btn-delete{
+    display: none;
+
+    position:absolute;
+    top:3px;
+    left:3px;
+    padding: 1px;
+    opacity:70%;
+}
+
+.AddPhotoURL .preview-container:hover .btn-delete{
+    display:block;
+}
+
+.AddPhotoURL .preview-container:hover .btn-delete:active{
+    background: yellow;
+}
+
+
+
+
+.AddPhotoURL .preview-container .btn-delete> img{
+    max-width:25px;
+    max-height: 25px;
+}
+
+
+

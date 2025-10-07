@@ -1,0 +1,42 @@
+/* RecipeSum */
+
+.RecipeSum {
+    width: 100%;
+    background-color: #1a2b4c; 
+    margin-block: 10px;
+    font-size: 0.8em;
+}
+
+.RecipeSum th, 
+.RecipeSum td {
+    border: 1px solid black; 
+    padding: 10px;
+    text-align: center; 
+    color: white; 
+}
+
+.RecipeSum thead {
+    background-color: #1f3b5c; 
+}
+
+.RecipeSum th {
+    font-weight: bold;
+}
+
+.RecipeSum tbody tr:nth-child(even) {
+    background-color: #243b5f; 
+}
+
+.RecipeSum tbody td:hover {
+    background-color: #2a4a70; 
+}
+
+.RecipeSum td {
+    font-weight:500;
+    font-family: 'Arial', sans-serif;
+}
+
+.RecipeSum th,
+.RecipeSum td {
+    border: 1px solid black; 
+}

@@ -1,0 +1,65 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+
+.AskPopUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    background-color: #e0f7fa; 
+    border: 1px solid #00838f; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 60vw;
+    max-width: 600px;
+    text-align: center;
+    z-index: 101; 
+}
+
+.AskPopUp .img-container {
+    margin-bottom: 15px;
+}
+
+.AskPopUp .img-container img {
+    
+    max-width: 40vw;
+    max-height: 40vh;
+    border-radius: 8px;
+    border: 2px solid #00838f; 
+}
+
+.AskPopUp .url-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.AskPopUp .url-box input {
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #00838f;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #006064;
+    background-color: #e0f7fa;
+    outline: none;
+}
+
+.AskPopUp .url-box input:focus {
+    border-color: #004d40;
+}

@@ -1,0 +1,65 @@
+@use './_Button3D' as *;
+
+.Button3D {
+  @include Button3D(rgb(0, 126, 48), #000201,52px);
+  font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.Button3D {
+  &.nav {
+    @include Button3D-modColor(rgb(184, 179, 179), rgb(255, 236, 173)); 
+    @include Button3D-modHeight(52px);
+    font-weight: bold; 
+    font-size: clamp(0.5rem,1.2rem,1.4rem);
+    line-height: 14px;
+    font-family: $g_Font_handwritting;
+    margin-right: 5px;
+  }
+  
+  &.c1 {
+    @include Button3D-modColor(rgb(202, 167, 167), rgb(255, 236, 173)); 
+  }
+
+  &.c2 {
+    @include Button3D-modColor(rgb(184, 179, 179), rgb(255, 236, 173)); 
+  }
+
+  &.c3 {
+    @include Button3D-modColor(rgb(165, 179, 187), rgb(255, 236, 173)); 
+  }
+
+  &.c4 {
+    @include Button3D-modColor(rgb(183, 190, 143), rgb(173, 255, 187)); 
+  }
+
+  &.active {
+    @include Button3D-modFontColor(rgb(255, 255, 255),
+    -2px 0 5px #ff0,
+    2px 0 5px #ff0,
+    0 -2px 5px #ff0,
+    0 2px 5px #ff0,
+    )
+  }
+  
+  &.AddButton{
+    @include Button3D-modHeight(35px);
+    @include Button3D-modColor(rgb(67, 160, 44), rgb(211, 241, 36)); 
+  }
+
+  &.EditButton{
+    @include Button3D-modHeight(28px);
+    @include Button3D-modColor(rgb(101, 103, 104), rgb(68, 185, 0)); 
+  }
+
+  &.btn_form{
+    width: 60%;
+    font-size: 1.4rem;
+    @include Button3D-modColor(rgb(99, 219, 0), rgb(255, 238, 0)); 
+  }
+
+  &#btn_clear{
+    width: 30%;
+    @include Button3D-modColor(rgb(255, 238, 0), rgb(226, 20, 20)); 
+  }
+
+}

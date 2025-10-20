@@ -6,9 +6,11 @@
     display: none;
 }
 
-.p-component{
-    font-size: 1.1vw;
-}
+/* td[role="cell"]{
+    container-type: inline-size;
+    font-size: 2.7cqi;
+} */
+
 .p-fluid .p-column-filter-element{
     min-width: 100%;
 }

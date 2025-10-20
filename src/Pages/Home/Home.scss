@@ -24,7 +24,7 @@ $line-height-header: 3px;
     border-radius: 20px;
     background-color: #fff;
     box-shadow: 
-        10px 10px 20px $shadow-dark; /* Dolny/Prawy cień */
+        10px 10px 20px $shadow-dark; 
 
     text-align: center;
 
@@ -44,12 +44,14 @@ $line-height-header: 3px;
         display: flex;
         flex-direction: column;
         gap:30px;
-
         margin-top: 50px;
     }
     li{ text-align: left;
         font-size: 1.3em;
         
-
+        @media (max-width: $g_breakpoint-md){
+            text-align: center;
+            padding-right: 10px;
+        }
     }
 }

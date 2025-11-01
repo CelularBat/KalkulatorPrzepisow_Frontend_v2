@@ -128,28 +128,28 @@
         }
       }
 
-      // on hover
-      &:hover {
-        .button-top {
-          color: red;
+    //   // on hover
+    //   &:hover {
+    //     .button-top {
+    //       color: red;
 
-          &::after {
-            background-image: radial-gradient(
-              color.adjust($top-bg-start, $lightness: 15%), 
-              color.adjust($top-bg-end, $lightness: 15%)
-            );
-          }
-        }
+    //       &::after {
+    //         background-image: radial-gradient(
+    //           color.adjust($top-bg-start, $lightness: 15%), 
+    //           color.adjust($top-bg-end, $lightness: 15%)
+    //         );
+    //       }
+    //     }
         
-      }
+    //   }
 
-    // Selected glowing effect
-      &.selected {
-        > .button-top::after {
-          background-image: radial-gradient(circle at center, $glowColor 0%, transparent 90%), 
-                            radial-gradient($top-bg-start, $top-bg-end);
-        }
-      }
+    // // Selected glowing effect
+    //   &.selected {
+    //     > .button-top::after {
+    //       background-image: radial-gradient(circle at center, $glowColor 0%, transparent 90%), 
+    //                         radial-gradient($top-bg-start, $top-bg-end);
+    //     }
+    //   }
    }
   }
   

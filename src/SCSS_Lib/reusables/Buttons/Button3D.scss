@@ -5,6 +5,13 @@
   font-family: $g_Font_Headers;
 }
 
+.Button3D:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+  pointer-events: none;
+  @include Button3D-modColor(rgb(141, 141, 141), rgb(176, 175, 175)); 
+}
+
 .Button3D {
   &.nav {
     @include Button3D-modColor(rgb(184, 179, 179), rgb(255, 236, 173)); 
@@ -87,5 +94,9 @@
 
     }
 
+  }
+
+  &.commentBtn{
+    @include Button3D-modHeight(35px);
   }
 }

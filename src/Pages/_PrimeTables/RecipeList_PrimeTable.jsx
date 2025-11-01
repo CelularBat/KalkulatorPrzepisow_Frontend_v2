@@ -7,7 +7,7 @@ import "./PrimeTable.css"
 
 import RecipeSumTable from '@pages/AddRecipe/RecipeSumTable';
 import { ActionKeysTemplate } from './_Templates/ActionKeysTemplate';
-import { RecipeExpansionTemplate } from './_Templates/RecipeExpansionTemplate';
+import { RecipeExpansionTemplate } from './_Templates/RecipeExpansionTemplate/RecipeExpansionTemplate';
 
 
 import { useSearchParams } from 'react-router-dom';

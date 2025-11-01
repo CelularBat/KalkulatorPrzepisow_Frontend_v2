@@ -3,8 +3,10 @@ import Table_Wrapper from './_PrimeTables/Table_Wrapper';
 import RecipesList_PrimeTable from './_PrimeTables/RecipeList_PrimeTable';
 import useRecipeStore from '@zustand/recipeStore';
 import useAskPopUp from '@zustand/widgets/AskPopUpManager';
+import { useNavigate } from 'react-router-dom';
 
 function Gallery({}) {
+    const navigate = useNavigate();
 
     const {
         userRecipes,
@@ -12,7 +14,10 @@ function Gallery({}) {
 
         fetchPublicRecipes,
         fetchUserRecipes,
-        deleteRecipe
+        deleteRecipe,
+
+        setIsFormRecipeInEditMode,
+        setRecipeDataToEdit
 
     } = useRecipeStore();
 
@@ -35,8 +40,10 @@ function Gallery({}) {
         }
     }
 
-    function handleEditRecipe(){
-        
+    function handleEditRecipe(rowData){
+        setIsFormRecipeInEditMode(true);
+        setRecipeDataToEdit(rowData);
+        navigate('/recipe');
     }
 
     return (

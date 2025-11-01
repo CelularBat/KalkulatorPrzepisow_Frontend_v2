@@ -2,7 +2,7 @@
 
 .Button3D {
   @include Button3D(rgb(0, 126, 48), #000201,52px);
-  font-family: Verdana, Geneva, Tahoma, sans-serif
+  font-family: $g_Font_Headers;
 }
 
 .Button3D {
@@ -14,24 +14,24 @@
     line-height: 14px;
     font-family: $g_Font_handwritting;
     margin-right: 5px;
+
+    &.c1 {
+      @include Button3D-modColor(rgb(202, 167, 167), rgb(255, 236, 173)); 
+    }
+  
+    &.c2 {
+      @include Button3D-modColor(rgb(184, 179, 179), rgb(255, 236, 173)); 
+    }
+  
+    &.c3 {
+      @include Button3D-modColor(rgb(165, 179, 187), rgb(255, 236, 173)); 
+    }
+  
+    &.c4 {
+      @include Button3D-modColor(rgb(183, 190, 143), rgb(173, 255, 187)); 
+    }
   }
   
-  &.c1 {
-    @include Button3D-modColor(rgb(202, 167, 167), rgb(255, 236, 173)); 
-  }
-
-  &.c2 {
-    @include Button3D-modColor(rgb(184, 179, 179), rgb(255, 236, 173)); 
-  }
-
-  &.c3 {
-    @include Button3D-modColor(rgb(165, 179, 187), rgb(255, 236, 173)); 
-  }
-
-  &.c4 {
-    @include Button3D-modColor(rgb(183, 190, 143), rgb(173, 255, 187)); 
-  }
-
   &.active {
     @include Button3D-modFontColor(rgb(255, 255, 255),
     -2px 0 5px #ff0,
@@ -41,9 +41,10 @@
     )
   }
   
-  &.AddButton{
-    @include Button3D-modHeight(35px);
-    @include Button3D-modColor(rgb(67, 160, 44), rgb(211, 241, 36)); 
+  &.AddProductButton{
+    @include Button3D-modHeight(40px);
+    @include Button3D-modColor(rgb(238, 186, 17), rgb(11, 83, 23)); 
+    font-weight: 600;
   }
 
   &.EditButton{
@@ -51,15 +52,40 @@
     @include Button3D-modColor(rgb(101, 103, 104), rgb(68, 185, 0)); 
   }
 
-  &.btn_form{
-    width: 60%;
+  &.productBtn{
     font-size: 1.4rem;
-    @include Button3D-modColor(rgb(99, 219, 0), rgb(255, 238, 0)); 
+    font-weight: 700;
+    &.add{
+      width:60%;
+      @include Button3D-modColor(#156604, rgb(207, 236, 137),true); 
+    }
+    &.clear{
+      width: 30%;
+      @include Button3D-modColor( rgb(255, 238, 0),rgb(226, 20, 20),true);
+    }
+
   }
 
-  &#btn_clear{
-    width: 30%;
-    @include Button3D-modColor(rgb(255, 238, 0), rgb(226, 20, 20)); 
-  }
 
+  &.recipeBtn{
+    width:100%;
+    
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    &.add{
+      @include Button3D-modColor(#156604, rgb(207, 236, 137),true);
+      &.img{
+        width:90px;
+        @include Button3D-modHeight(90px);
+      }
+
+    }
+
+    &.clear{
+      @include Button3D-modColor(rgb(226, 20, 20), rgb(255, 238, 0),true);
+
+    }
+
+  }
 }

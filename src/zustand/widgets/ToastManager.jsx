@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {create} from 'zustand';
 import './ToastManager.css';
 import {nanoid} from 'nanoid';
+import clsx from 'clsx';
 
 
 // Create a toast store with Zustand inside the component file.
@@ -15,15 +16,25 @@ const useToastStore = create((set) => ({
 
 // Toast component: displays an individual toast and auto-dismisses it.
 function Toast({ id, message, type = 'success', duration = 3000, onRemove }) {
+  const [fadeOut, setFadeOut] = React.useState(false);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const fadeOutTimer = setTimeout(() => {
+      setFadeOut(true);
+    }, duration - 500);
+
+    const removeTimer = setTimeout(() => {
       onRemove(id);
     }, duration);
-    return () => clearTimeout(timer);
+
+    return () => {
+      clearTimeout(removeTimer);
+      clearTimeout(fadeOutTimer);
+    }
   }, [id, duration, onRemove]);
 
   return (
-  <div className={`toast ${type}`}>
+  <div className={clsx("toast", type, fadeOut && "fade-out")}>
     <div className='toast-text'>{message}</div> 
   </div>
   )

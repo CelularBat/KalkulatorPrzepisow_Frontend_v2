@@ -6,8 +6,9 @@ import "./PrimeTable.css"
 
 import { useUserProductsStore } from '@zustand/primeTableStore';
 
-import IMG_Padlock from "@/assets/padlock.png";
-import IMG_Public from "@/assets/public.png";
+import { ActionKeysTemplate } from './_Templates/ActionKeysTemplate';
+import { PublColumnTemplate } from './_Templates/PublColumntTemplate';
+import { AddToRecipeTemplate } from './_Templates/AddToRecipeTemplate';
 
 
 function UserProducts_PrimeTable({TableData,
@@ -85,35 +86,4 @@ function UserProducts_PrimeTable({TableData,
 }
 
 
-
-const ActionKeysTemplate = ({rowData,onClickEdit,onClickDelete})=>{
-    return(
-        <div style={{gap:"5px", display:"Flex", flexDirection:"column"}}>
-            <button className="UserTable--button edit-button" onClick={()=>onClickEdit(rowData)}>✎</button>
-            <button className="UserTable--button delete-button" onClick={()=>onClickDelete(rowData)}>X</button>
-        </div>      
-    )
-}
-
-const AddToRecipeTemplate = ({rowData,onClickAddToRecipe})=>{
-    return(
-        <div>
-             <button className="UserTable--button addToRecipe-button" onClick={()=>onClickAddToRecipe(rowData)}>+</button>
-        </div>
-    )
-}
-
-const PublColumnTemplate = ({isPublic})=>{
-    return (
-        <>
-        {   isPublic?
-            <span className={"UserTable--Public-True"}>
-                <img className="UserTable--Public-icon" src={IMG_Public} /></span>
-            :<span className={"UserTable--Public-False"}>
-                <img className="UserTable--Public-icon" src={IMG_Padlock} /></span>
-
-        }
-        </>
-    );
-}
 export default UserProducts_PrimeTable;

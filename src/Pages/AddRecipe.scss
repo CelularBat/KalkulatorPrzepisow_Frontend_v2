@@ -1,6 +1,8 @@
 .AddRecipe{
     display: flex;
     flex-direction: row;
+    position: relative;
+    z-index: 0;
 
     @media (max-width: $g_breakpoint-md){
         flex-direction: column;

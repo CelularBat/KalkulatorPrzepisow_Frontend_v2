@@ -33,7 +33,7 @@
       font: inherit;
       cursor: pointer;
   
-      >.button-top {
+      .button-top {
         height: $top-height;
         display: flex;
         align-items: center;
@@ -66,10 +66,11 @@
             0 1px 2px 1px $bottom-bg-shadow1;
           transition-property: border-radius, padding, width, transform;
           transition-duration: .2s;
+          transition-timing-function: ease;
         }
       }
   
-      >.button-bottom {
+      .button-bottom {
         height: $bottom-heights;
         position: absolute;
         z-index: -1;
@@ -91,9 +92,10 @@
           inset 0 -1px 3px 3px $bottom-bg-shadow3;
         transition-property: border-radius, padding-top;
         transition-duration: .2s;
+        transition-timing-function: ease;
       }
   
-      >.button-base {
+      .button-base {
         height: $base-heights;
         position: absolute;
         z-index: -2;
@@ -125,12 +127,17 @@
           padding-top: 0;
         }
       }
+
       // on hover
       &:hover {
         .button-top {
           color: red;
+
           &::after {
-            background-image: radial-gradient(lighter($top-bg-start,30) ,lighter($top-bg-end,30) );
+            background-image: radial-gradient(
+              color.adjust($top-bg-start, $lightness: 15%), 
+              color.adjust($top-bg-end, $lightness: 15%)
+            );
           }
         }
         
@@ -139,7 +146,7 @@
     // Selected glowing effect
       &.selected {
         > .button-top::after {
-          background-image: radial-gradient(circle at center, $glowColor 0%, transparent 40%), 
+          background-image: radial-gradient(circle at center, $glowColor 0%, transparent 90%), 
                             radial-gradient($top-bg-start, $top-bg-end);
         }
       }
@@ -147,7 +154,7 @@
   }
   
   
-  @mixin Button3D-modColor($primaryColor, $fontColor) {
+  @mixin Button3D-modColor($primaryColor, $fontColor, $doLightOnHover: false) {
     $top-bg-start: $primaryColor;
     $top-bg-end: color.scale($primaryColor, $lightness: -20%);
     $bottom-bg-color: color.scale($primaryColor, $lightness: -50%);
@@ -163,6 +170,20 @@
   
       >.button-bottom {
         background-color: $bottom-bg-color;
+      }
+    }
+
+    @if $doLightOnHover == true {
+      &:hover {
+          >.button-top {
+          color: color.adjust($fontColor, $lightness: 20%);
+          &::after {
+            background-image: radial-gradient(
+              color.adjust($top-bg-start, $lightness: 15%),
+              color.adjust($top-bg-end, $lightness: 15%)
+            );
+          }
+        }
       }
     }
   }

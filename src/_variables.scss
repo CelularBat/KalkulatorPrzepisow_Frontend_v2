@@ -3,15 +3,16 @@
 //     --primary-color2:#6FAAFF;
 // }
 /* Vars to export for dynamic use [It's hacky, don't use SCSS functions on them]*/
-$g_primary_color1: var(--primary-color1);
-$g_primary_color2: var(--primary-color2);
+$gv_primary_color1: var(--primary-color1);
+$gv_primary_color2: var(--primary-color2);
 
-$g_primaryColorGradient: linear-gradient(to left, $g_primary_color1, $g_primary_color2);
-$g_primaryColorGradient_reversed: linear-gradient(to right, $g_primary_color1, $g_primary_color2);
+$gv_primaryColorGradient: linear-gradient(to left, $gv_primary_color1, $gv_primary_color2);
+$gv_primaryColorGradient_reversed: linear-gradient(to right, $gv_primary_color1, $gv_primary_color2);
 
 $g_breakpoint-md: 768px;
 
 $g_Font_handwritting: 'Cursive', 'Segoe Script', 'Brush Script MT', sans-serif; 
+$g_Font_Headers: 'Helvetica', sans-serif;
 
 @mixin header-h2(){
         text-align: center;

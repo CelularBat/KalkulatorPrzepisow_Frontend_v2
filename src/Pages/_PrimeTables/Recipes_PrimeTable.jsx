@@ -5,6 +5,8 @@ import InputNumber from '@pages/_Shared/headless/InputNumber';
 import IMG_Padlock from "@/assets/padlock.png";
 import "./PrimeTable.css"
 
+import { DeleteIngredientTemplate } from './_Templates/DeleteIngredientTemplate';
+
 const Recipes_PrimeTable = ({RowsData,handleDeleteRow,handlePortionChange})=>{
 
     const dataLabels = {
@@ -50,7 +52,7 @@ const Recipes_PrimeTable = ({RowsData,handleDeleteRow,handlePortionChange})=>{
 
             <Column header="" style={{width:"10%"}} 
             body={
-                (rowData)=><ActionsKeysTemplate {... {rowData,handleDeleteRow}}/> 
+                (rowData)=><DeleteIngredientTemplate {... {rowData,handleDeleteRow}}/> 
             }/>
         </DataTable>   
 
@@ -58,17 +60,4 @@ const Recipes_PrimeTable = ({RowsData,handleDeleteRow,handlePortionChange})=>{
 }
 
 
-
-const ActionsKeysTemplate = ({rowData,handleDeleteRow})=>{
-    return(
-        <div style={{display:"flex", alignContent:"center", justifyContent:"center"}}>
-            <button className="UserTable--button delete-button" 
-            style={{maxHeight:"2vh", display:"grid", alignContent:"center", color:"red" 
-                ,backgroundColor:"bisque"
-            }}
-            onClick={()=>handleDeleteRow(rowData)}>
-            X</button>
-        </div>
-    );
-}
 export default Recipes_PrimeTable;

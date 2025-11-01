@@ -2,7 +2,7 @@
     margin-block: 5px;;
 }
 .Table_Wrapper-header{
-    background: $g_primaryColorGradient;
+    background: $gv_primaryColorGradient;
     height: 35px;
     text-align: center;
     display: flex;
@@ -14,5 +14,7 @@
 
     font-family: Helvetica, sans-serif;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.6);
 }

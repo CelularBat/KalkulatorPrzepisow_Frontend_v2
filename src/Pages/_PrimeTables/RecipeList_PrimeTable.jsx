@@ -5,16 +5,17 @@ import { FilterMatchMode } from 'primereact/api';
 
 import "./PrimeTable.css"
 
-import IMG_Padlock from "@/assets/padlock.png";
-import IMG_Public from "@/assets/public.png";
 import RecipeSumTable from '@pages/AddRecipe/RecipeSumTable';
-
-import { nanoid } from 'nanoid';
-
-
+import { ActionKeysTemplate } from './_Templates/ActionKeysTemplate';
+import { RecipeExpansionTemplate } from './_Templates/RecipeExpansionTemplate';
 
 
-function RecipesList_PrimeTable({isPublic=false,TableData,defaultRows,
+import { useSearchParams } from 'react-router-dom';
+
+
+
+
+function RecipesList_PrimeTable({isPublic,TableData,defaultRows,
     handleDeleteRecipe,handleEditRecipe
 }) {
 
@@ -22,9 +23,23 @@ function RecipesList_PrimeTable({isPublic=false,TableData,defaultRows,
     const [expandedRows, setExpandedRows] = React.useState(null);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
 
+    // URL with id - link integration
+    const [searchParams, setSearchParams] = useSearchParams();
+    React.useEffect( ()=>{
+        const recipeId = searchParams.get("id");
+        const rowData = TableData.find(row=>row._id === recipeId);
+        if (rowData){
+            setSelectedProduct(rowData);
+            setExpandedRows([rowData]);
+        }
+        const el = document.querySelector(`.rowId-${recipeId}`);
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+    },[TableData]);
+
+
     const dataLabels = {
         name: {label:"Nazwa" ,hasFilter:true},
-        //description: {label:"Opis" ,hasFilter:false},
     }
 
     //Main columns
@@ -44,26 +59,40 @@ function RecipesList_PrimeTable({isPublic=false,TableData,defaultRows,
         
     const actionColumnBody = (rowData)=>
         <ActionKeysTemplate rowData={rowData}
-        {...{handleDeleteRecipe,handleEditRecipe}}
+        onClickEdit={handleEditRecipe}
+        onClickDelete={handleDeleteRecipe}
         />
     
     const photoColumnBody = (rowData)=>
         <PhotoTemplate rowData={rowData}/>
+    
+    const expansionBody = (rowData) =>
+        <RecipeExpansionTemplate rowData={rowData} />
+        
 
     return (
     <DataTable value={TableData} 
     stripedRows  size="small" showGridlines 
-    paginator rows={defaultRows} rowsPerPageOptions={[5, 10, 25, 50]}
+    paginator rows={defaultRows} rowsPerPageOptions={[1,5, 10, 25, 50]}
     filterDisplay="row" filters={filters}
 
     selectionMode="single"
-    selection={selectedProduct} onSelectionChange={(e) => setSelectedProduct(e.value)}
+    selection={selectedProduct} 
+    onSelectionChange={(e) => {
+        setSelectedProduct(e.value);
+        console.log(e.value);
+        setSearchParams({id: e.value?._id || ''})
+    }}
 
+    rowClassName={(rowData) => `rowId-${rowData._id}`} 
+
+    onRowToggle={(e) => {setExpandedRows(e.data)}}
     onRowSelect={(e) => { setExpandedRows([e.data]); } }
     onRowUnselect={(e) => { setExpandedRows([]); } }
 
-    rowExpansionTemplate={expansionTemplate} 
-    expandedRows={expandedRows} onRowToggle={(e) => {setExpandedRows(e.data)}}
+    rowExpansionTemplate={expansionBody} 
+    expandedRows={expandedRows} 
+    
     >   
         {/* <Column expander={true} style={{ width: '3%' }} /> */}
         <Column header="Zdjęcie" body={ photoColumnBody} style={{width:"10%"}}/>       
@@ -71,9 +100,9 @@ function RecipesList_PrimeTable({isPublic=false,TableData,defaultRows,
         <Column header="Wartość odżywcza" body={ nutritionColumnBody} />
 
         {isPublic?
-        <Column header="Autor" field="author" style={{ width: '3%' }}  />
+            <Column header="Autor" field="author" style={{ width: '3%' }}  />
         :
-        <Column header="" body={ actionColumnBody} />
+            <Column header="" body={ actionColumnBody} />
         }
         
         
@@ -91,40 +120,7 @@ const PhotoTemplate = ({rowData})=>{
     ) : null;
 }
 
-const ActionKeysTemplate = ({rowData,handleDeleteRecipe,handleEditRecipe})=>{
-    return(
-        <div style={{gap:"5px", display:"Flex", flexDirection:"column"}}>
-            <button className="UserTable--button edit-button" onClick={()=>handleEditRecipe(rowData)}>✎</button>
-            <button className="UserTable--button delete-button" onClick={()=>handleDeleteRecipe(rowData)}>X</button>
-        </div>      
-    )
-}
 
 
 export default RecipesList_PrimeTable;
 
-
-const expansionTemplate = (rowData)=>{
-        const ingridients = rowData.productsList.map((item,idx) => { 
-          return(<li key={nanoid()}>
-            <b>{item.portion}g</b> {item.name}
-          </li>); 
-        })
-        return(
-            <div style={{display:'flex',flexDirection:'rows',gap:"15px", paddingRight:"20px" , width:"100%", whiteSpace: "pre-wrap"}}>
-                <div>
-                    <h3>Składniki:</h3>
-                    <ul>
-                        {ingridients}
-                    </ul>
-
-                </div>
-                <div style={{flex:1}}>
-                    <h3>Przepis:</h3>
-                    <span>{rowData.description}</span>
-                </div>
-                
-
-            </div>
-        )
-}

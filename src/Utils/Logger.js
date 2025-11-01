@@ -1,13 +1,15 @@
-const log = (() => {
-    /* Settings: Logging levels:
-         - DEBUG
-         - INFO
-         - WARN
-         - ERROR
-       Set the desired logging level here: */
+import { LOGGING_LEVEL } from "../../config";
 
-    const LOGGING_LEVEL = "DEBUG";
-  
+const log = (() => {
+    // /* Settings: Logging levels:
+    //      - DEBUG
+    //      - INFO
+    //      - WARN
+    //      - ERROR
+    //    Set the desired logging level here: */
+
+    // const LOGGING_LEVEL = "DEBUG";
+    
     /* 
     Do not touch below 
     */

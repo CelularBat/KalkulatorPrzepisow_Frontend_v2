@@ -1,5 +1,5 @@
 import React from 'react';
-import "./UserPanel.css";
+import "./UserPanel.scss";
 
 import IMG_AVATAR from "../../assets/avatar.svg";
 

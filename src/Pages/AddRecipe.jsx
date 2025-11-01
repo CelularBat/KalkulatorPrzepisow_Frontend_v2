@@ -6,7 +6,7 @@ import useProductStore from '@zustand/productStore';
 import useRecipeStore from '@zustand/recipeStore';
 import Table_Wrapper from './_PrimeTables/Table_Wrapper';
 
-import './AddRecipe/AddRecipe.scss'
+import './AddRecipe.scss'
 import ResizableDivider from './_Shared/headless/ResizableDivider';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
@@ -22,7 +22,7 @@ function AddRecipe({}) {
         fetchPublicProducts,
     } = useProductStore();
 
-    const {addRecipe} = useRecipeStore();
+    const {addRecipe, updateRecipe} = useRecipeStore();
 
 
     const [AddProductRow,setAddProductRow] = React.useState({});
@@ -41,6 +41,10 @@ function AddRecipe({}) {
        const a = await addRecipe(RowsData,Title,Description,PhotoURL);  
     }
 
+    async function onRecipeFormUpdate(id, RowsData,Title,Description,PhotoURL){
+        const a = await updateRecipe(id,RowsData,Title,Description,PhotoURL);  
+    }
+
 
 
     return (
@@ -48,7 +52,7 @@ function AddRecipe({}) {
             {
                 isMobileView? // Mobile view
                     <>
-                        <RecipeForm {...{AddProductRow,onRecipeFormSubmit}}/>
+                        <RecipeForm {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
                         <div className='tableContainer'>
                             <Table_Wrapper title={"Moja baza produktów"}>
                             <UserProducts_PrimeTable TableData={userProducts} 
@@ -69,7 +73,7 @@ function AddRecipe({}) {
                 <ResizableDivider defaultLeftWidth={50} min={40} max={70}
 
                 leftContent={
-                    <RecipeForm {...{AddProductRow,onRecipeFormSubmit}}/>
+                    <RecipeForm {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
                 }
 
                 rightContent={

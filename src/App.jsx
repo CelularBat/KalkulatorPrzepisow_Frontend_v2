@@ -19,6 +19,7 @@ function App() {
           <Route path="recipe" element={<AddRecipe/>} />
           <Route path="product" element={<AddProduct/>} />
           <Route path="gallery" element={<Gallery/>} />
+          
     </Route>
     </Routes>
     </BrowserRouter>

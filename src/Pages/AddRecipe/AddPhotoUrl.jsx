@@ -8,6 +8,7 @@ import IMG_trashbin from "@/assets/trashbin.svg"
 
 import AddPhotoURLOverlay from "./AddPhotoOverlay";
 import Button from "@pages/_Shared/Button_PopUp";
+import Button3D from "@re/Buttons/Button3D";
 
 const AddPhotoURL = ({PhotoURL,handleAddPhoto})=>{
     const [IsAddFormOn,setIsAddFormOn] = React.useState(false);
@@ -36,7 +37,10 @@ const AddPhotoURL = ({PhotoURL,handleAddPhoto})=>{
             {   
                 PhotoURL?
                 <PreviewContainer {...{PhotoURL,handleSpawnDeleteForm}}/>
-                :<button type="button" onClick={ ()=>setIsAddFormOn(true) }>Dodaj Zdjęcie!</button>    
+                :
+                <Button3D className="recipeBtn add img selected" onClick={ ()=>setIsAddFormOn(true) }>
+                    Dodaj Zdjęcie! 
+                </Button3D>  
             }
               
             {IsAddFormOn && <AddPhotoURLOverlay {...{handleForm}}/>}

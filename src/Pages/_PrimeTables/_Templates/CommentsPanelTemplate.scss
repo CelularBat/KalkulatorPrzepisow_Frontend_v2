@@ -1,0 +1,16 @@
+.CommentsPanelTemplate{
+    display: inline-flex;
+    flex-direction: column;
+
+    & > .header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: $gv_primaryColorGradient_reversed;
+        min-height: 45px;
+        filter:saturate(1);
+        z-index: 0;
+        
+    }
+    
+}

@@ -27,6 +27,15 @@ const API_URLs = {
     },
     helper:{
         verifyimg:  {url:'/api/verifyimg',method:"POST"},
+    },
+    comment: {
+        add: { url: '/api/addcomment', method: "POST" },
+        update: { url: '/api/updatecomment', method: "POST" },
+        remove: { url: '/api/removecomment', method: "POST" }
+    },
+    comments: {
+        getRecipeComments: { url: '/api/getrecipecomments', method: "POST" }, 
+        getRecipeCommentsCount: { url: '/api/getrecipecommentscount', method: "POST" }
     }
 }
 
@@ -40,7 +49,7 @@ Object.entries(API_URLs).forEach(([category, pairs]) => {
 });
 
 
-function fetchAPI (api_url,data = ''){
+async function fetchAPI (api_url,data = ''){
     const options = (api_url.method === "POST")?
     {
         method: "POST",

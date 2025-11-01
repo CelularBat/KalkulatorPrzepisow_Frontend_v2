@@ -1,12 +1,12 @@
 .AddButton-container{
-    background: $g_primaryColorGradient_reversed;
+    background: $gv_primaryColorGradient_reversed;
     width: 200px;
-    padding-block: 13px;
+    padding-block: 9px;
     position:relative;
-    border: #62dfdf 2px solid;
+    border: $gv_primary_color2 2px solid;
     display: grid;
     place-items: center;
     z-index: 9;
-    border-radius: 40%;
+    border-radius: 7%;
 
 }

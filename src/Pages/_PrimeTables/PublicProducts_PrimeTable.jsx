@@ -6,6 +6,9 @@ import "./PrimeTable.css"
 import { usePublicProductsStore } from '@zustand/primeTableStore';
 
 
+import { AddToRecipeTemplate } from './_Templates/AddToRecipeTemplate';
+
+
 function PublicProducts_PrimeTable({TableData,
     IsInRecipeMode, onClickAddToRecipe}) {
 
@@ -74,14 +77,6 @@ function PublicProducts_PrimeTable({TableData,
     );
 }
 
-
-const AddToRecipeTemplate = ({rowData,onClickAddToRecipe})=>{
-    return(
-        <div>
-             <button className="UserTable--button addToRecipe-button" onClick={()=>onClickAddToRecipe(rowData)}>+</button>
-        </div>
-    )
-}
 
 
 export default PublicProducts_PrimeTable;

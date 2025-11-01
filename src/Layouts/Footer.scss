@@ -1,19 +1,42 @@
 footer{
-    background: $g_primaryColorGradient;
-    height: 36px;
+    background: $gv_primaryColorGradient;
+    min-height: 36px;
     display:flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width:100%;
-    padding: 0 10%;
+    padding: 0 5%;
     position: static;
     bottom: 0;
     gap:15px;
+    font-family: $g_Font_handwritting;
 
     & > h3{
         font-size: 0.9rem;
-        font-family: Arial, Helvetica, sans-serif;
+        
         font-style: italic;
+    }
+
+    & > a{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    & .theming{
+        margin-right:auto;
+        display: flex;
+        flex-direction: row;
+        gap:10px;
+
+        & > label{
+            font-weight: 500;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            margin-right: 3px;
+            & > input{
+                margin-left: 3px;
+            }
+        }
     }
 }

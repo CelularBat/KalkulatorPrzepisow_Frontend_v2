@@ -102,67 +102,7 @@ $font-size-header: 1.8em;
     }
   }
 
-  .AddPhotoURL {
-    > button {
-      background-color: $RecipeForm-primary-bg-color;
-      color: $RecipeForm-text-color;
-      padding: 10px 20px;
-      font-family: $RecipeForm-font-family;
-      font-size: $RecipeForm-font-size-small;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, box-shadow 0.2s ease;
-      border: 1px solid $RecipeForm-border-color;
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4),
-                  -2px -2px 5px rgba(255, 255, 255, 0.15),
-                  inset -1px -1px 0 rgba(255, 255, 255, 0.2);
-      position: relative;
+  
 
-      &:active {
-        box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
-        transform: translateY(2px);
-      }
-
-      &:hover {
-        background-color: $RecipeForm-hover-bg-color;
-        color: #e0e0e0;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
-                    -3px -3px 6px rgba(255, 255, 255, 0.25);
-      }
-    }
-  }
-
-  .btn-recipe-container {
-    width: 100%;
-  }
-
-  .btn-recipe {
-    width: 100%;
-    background-color: $RecipeForm-primary-bg-color;
-    color: $RecipeForm-text-color;
-    padding: 10px 20px;
-    font-family: $RecipeForm-font-family;
-    font-size: $RecipeForm-font-size-small;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.2s ease;
-    border: 1px solid $RecipeForm-border-color;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4),
-                -2px -2px 5px rgba(255, 255, 255, 0.15),
-                inset -1px -1px 0 rgba(255, 255, 255, 0.2);
-    position: relative;
-
-    &:hover {
-      background-color: $RecipeForm-hover-bg-color;
-      color: #e0e0e0;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
-                  -3px -3px 6px rgba(255, 255, 255, 0.25);
-    }
-
-    &.btn-cancel {
-      background-color: red;
-    }
-  }
+  
 }

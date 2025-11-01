@@ -8,16 +8,18 @@ import RecipeSumTable from './RecipeSumTable';
 
 import { delayFunction } from '@utils/Utils';
 import log from '@utils/Logger';
+import { useNavigate } from 'react-router-dom';
 
 import useRecipeStore from '@zustand/recipeStore';
 import AskPopUp from '@pages/_Shared/AskPopUp';
+import Button3D from '@re/Buttons/Button3D';
 
 
 
 
 
 const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
-
+    const navigate = useNavigate();
     const [RowsData,setRowsData] = React.useState([]);
     const [PhotoURL,setPhotoURL] = React.useState("");
     const [Title,setTitle] = React.useState("");
@@ -114,6 +116,7 @@ const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
 
     function onRecipeCancelEdit(){
         setIsFormRecipeInEditMode(false);
+        navigate("/gallery");
     }
 
     function onCleanForm(answer){
@@ -154,33 +157,34 @@ const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
             <div className='btn-recipe-container'>
             {IsFormRecipeInEditMode?
                 <>
-                    <button className='btn-recipe'
+                    <Button3D className='recipeBtn add'
                     onClick={()=>onRecipeFormUpdate(RecipeDataToEdit._id, RowsData,Title,Description,PhotoURL)}>
                         Aktualizuj przepis
-                    </button>
- 
-                    <button className='btn-recipe btn-cancel'
+                    </Button3D>
+
+                    <Button3D className='recipeBtn clear'
                     onClick={onRecipeCancelEdit}>
                         Anuluj
-                    </button>   
+                    </Button3D>
+ 
                 </>                   
             :
-                <button className='btn-recipe'
+                <Button3D className='recipeBtn add'
                 onClick={()=>onRecipeFormSubmit(RowsData,Title,Description,PhotoURL)}>
                     Dodaj przepis!
-                </button>
+                </Button3D>
+
             }
             </div>
    
 
-            
-
             <RecipeSumTable {...{RowsData}}/>
 
-            <button className='btn-recipe btn-cancel'
+            <Button3D className='recipeBtn clear'
                 onClick={()=>setShowPopUpClean(true)}>
                     Wyczyść wszystko!
-            </button>
+            </Button3D>
+
             <AskPopUp callBack={onCleanForm} isShown={ShowPopUpClean}
              question="Wyczyścić wszystko?" />
 

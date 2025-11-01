@@ -190,11 +190,11 @@ const ProductFormRender = ({FormData,handleChange,cleanForm,IsProductFormInEditM
 
     {/* Przyciski na dole */}
     <div className="button-group">
-        <Button3D type="submit" className="btn_form" id="btn_add">
+        <Button3D type="submit" className="productBtn add" id="btn_add">
           {IsProductFormInEditMode ? "Potwierdź edycję" : "Dodaj"} 
         </Button3D>     
       
-        <Button3D type="button" className="btn_form" id="btn_clear" onClick={cleanForm} >
+        <Button3D type="button" className="productBtn clear" id="btn_clear" onClick={cleanForm} >
           Wyczyść
         </Button3D>
    

@@ -8,68 +8,34 @@ import UserPanel from './Header/UserPanel';
 import Button3D from '@re/Buttons/Button3D'
 
 import { useUserStore } from '@zustand/userStore';
-import { API_URLs,fetchAPI } from "@utils/API_Handler";
-
 import {useToast} from '@zustand/widgets/ToastManager'
 
 
 function Header({}) {
-    const { G_IsUserLoggedIn, G_UserName, setG_IsUserLoggedIn, setG_UserName } = useUserStore();
+    const { G_IsUserLoggedIn, G_UserName, checkLoginStatus,login,register,logout } = useUserStore();
     const showMsg = useToast();
 
     // On Start
     React.useEffect(()=>{
-        fetchAPI(API_URLs.user.islogged,{})
+        checkLoginStatus()
         .then(result=>{
            if (result && result.isLogged){
-              setG_IsUserLoggedIn(true);
-              setG_UserName(result.userName);
-              showMsg(`Welcome ${result.userName} !`);
+              showMsg(`Welcome back ${result.userName} !`);
            }
         });
      },[]);
 
 
      function handleLogin(user,pass){
-        fetchAPI(API_URLs.user.login,{user:user, password: pass })
-        .then(result=>{
-           if (result.status == 1){
-              setG_IsUserLoggedIn(true);
-              setG_UserName(user);
-              showMsg(`Welcome ${user} !`);
-           } else if (result.status == 0){
-            showMsg(result.msg,"error");
-           }
-        });
-        
+        login(user,pass); 
       }
       
      function handleRegister(user,pass){
-        fetchAPI(API_URLs.user.register,{user:user, password: pass })
-        .then(result=>{
-           
-           if (result.status == 1){
-              setG_IsUserLoggedIn(true);
-              setG_UserName(user);
-              showMsg(result.msg);
-           }else if (result.status == 0){
-            showMsg(result.msg,"error");
-           }
-        })
+        register(user,pass)
       }
   
       function handleLogout(){
-        fetchAPI(API_URLs.user.logout,{})
-        .then(result=>{
-           
-           if (result.status == 1){
-              setG_IsUserLoggedIn(false);
-              showMsg(result.msg )
-           }else if (result.status == 0){
-            showMsg(result.msg,"error");
-           }
-        })
-        
+        logout();
       }
 
 

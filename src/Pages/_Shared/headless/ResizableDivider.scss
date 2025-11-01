@@ -16,14 +16,15 @@
     .resizer {
       width: 5px;
       cursor: col-resize;
-      background-color: #ccc;
+      background-color: $gv_primary_color2;
       transition: background-color 0.2s;
       margin-left: 3px;
       margin-right: 3px;
+      margin-top: 5px;
     }
     
     .resizer:hover {
-      background-color: #999;
+      background-color: $gv_primary_color1;
     }
 
   }

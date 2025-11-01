@@ -11,4 +11,9 @@
         @include modColor($contentColorOff: red);
         @include modSize(30px,30px);
     }
+
+    &.comment{
+        @include modColor( rgb(255, 230, 0), blue);
+        @include modSize(30px,30px);
+    }
 }

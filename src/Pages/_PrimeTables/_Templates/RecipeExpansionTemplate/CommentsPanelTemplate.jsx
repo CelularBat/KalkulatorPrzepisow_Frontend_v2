@@ -5,6 +5,9 @@ import ICON from '@/assets/comment-dots-solid-full.svg'
 import useCommentStore from '@zustand/commentStore';
 import Button3D from '@re/Buttons/Button3D';
 import CommentWindow from './CommentWindow';
+import TextArea3D from '@re/TextArea3D';
+import CommentBox3D from '@re/CommentBox3D';
+
 
 const CommentsPanelTemplate = ({recipeId})=>{
 
@@ -12,39 +15,64 @@ const CommentsPanelTemplate = ({recipeId})=>{
 
     const [commentsCount,setCommentsCount] = React.useState( null);
     const [comments,setComments] = React.useState([]);
-    const [showComments,setShowComments] = React.useState(false);
+    const [showingComments,setShowingComment] = React.useState(false);
     const [showAddCommentWindow,setShowAddCommentWindow] = React.useState(false);
+
+    const [newCommentText,setNewCommentText] = React.useState();
 
  
 
+// On render
     React.useEffect( ()=>{
-        (async ()=>{
-            const count = await getRecipeCommentsCount(recipeId);
-            setCommentsCount(count);
-        })()
-      
+        refreshCommentsCount();
     },[]);
+
+    async function refreshCommentsCount(){
+        const count = await getRecipeCommentsCount(recipeId);
+        setCommentsCount(count);
+    }
 
     function onWriteComment(){
         setShowAddCommentWindow(true);
-        onShowComments();
+        onShowComments(false);
     }
 
-    async function onShowComments(){
-        const comments = await getRecipeComments(recipeId);
-        setComments(comments);
+    async function onShowComments(isShowing){
+        if (isShowing){
+            setShowingComment(false);
+        }
+        else{
+            const comments = await getRecipeComments(recipeId);
+            console.log(comments)
+            setComments(comments);
+            setShowingComment(true);
+        }
+        
     }
 
     async function onAddComment(){
-        setShowAddCommentWindow(false);
+        const res = await addComment(recipeId,newCommentText);
+        if (res.status === 1){
+            const comments = await getRecipeComments(recipeId,true);
+            setComments(comments);
+            setShowAddCommentWindow(false);
+            refreshCommentsCount();
+        }
+        
     }
+
+    const renderComments = comments.map((c,idx)=>
+        <CommentBox3D key={idx}
+            {...c}
+        />
+    )
 
     return (
         <div className='CommentsPanelTemplate'>
             <div className='header'>
                 { (commentsCount>0)?
-                    <Button3D className='commentBtn add' onClick={onShowComments}>
-                        {`Pokaż komentarze (${commentsCount})`}
+                    <Button3D className='commentBtn add' onClick={()=>onShowComments(showingComments)}>
+                        {showingComments ? `Ukryj komentarze (${commentsCount})` : `Pokaż komentarze (${commentsCount})`}
                     </Button3D>
                     :
                     <Button3D className='commentBtn disabled' disabled={true}> 
@@ -62,17 +90,20 @@ const CommentsPanelTemplate = ({recipeId})=>{
 
             {showAddCommentWindow &&
             <div className='commentWritter'>
-                <CommentWindow />
+                <TextArea3D width='100%' height='100px' expandable={true} maxChars={500} 
+                    onTextChangeCb={(text)=>setNewCommentText(text)}
+                    style={{color:"black"}}
+                />
                 
                 <Button3D className='recipeBtn add img' onClick={onAddComment}>
-                    Opublikuj!
+                    Wyślij!
                 </Button3D>
             </div>
             }
 
-            { showComments &&
+            { showingComments &&
             <div className='body'>
-
+                {renderComments}
             </div>
             }
             

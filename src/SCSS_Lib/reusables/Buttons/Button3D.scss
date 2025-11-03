@@ -2,15 +2,11 @@
 
 .Button3D {
   @include Button3D(rgb(0, 126, 48), #000201,52px);
-  font-family: $g_Font_Headers;
+  font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.Button3D:disabled {
-  cursor: not-allowed;
-  opacity: 0.9;
-  pointer-events: none;
-  @include Button3D-modColor(rgb(141, 141, 141), rgb(176, 175, 175)); 
-}
 
 .Button3D {
   &.nav {
@@ -50,7 +46,7 @@
   
   &.AddProductButton{
     @include Button3D-modHeight(40px);
-    @include Button3D-modColor(rgb(238, 186, 17), rgb(11, 83, 23)); 
+    @include Button3D-modColor(rgb(202, 200, 89), rgb(28, 110, 42)); 
     font-weight: 600;
   }
 
@@ -98,5 +94,13 @@
 
   &.commentBtn{
     @include Button3D-modHeight(35px);
+    @include Button3D-modColor(rgb(67, 125, 143), rgb(223, 213, 76));
   }
+}
+
+.Button3D:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+  pointer-events: none;
+  @include Button3D-modColor(rgb(141, 141, 141), rgb(176, 175, 175)); 
 }

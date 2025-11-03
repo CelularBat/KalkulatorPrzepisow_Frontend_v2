@@ -31,15 +31,15 @@ const useCommentStore = create((set, get) => ({
         );
     },
 
-    getRecipeComments: async (recipeId) => {
+    getRecipeComments: async (recipeId,forceRefetch = false) => {
         const state = get();
         const cacheEntry = state.comments.find(c => c.recipeId === recipeId);
         const now = Date.now();
     
-        if (cacheEntry && (now - cacheEntry._cacheCreatedAt) <= MAX_CACHE_LIFE) {
+        if (!forceRefetch && cacheEntry && (now - cacheEntry._cacheCreatedAt) <= MAX_CACHE_LIFE) {
             return cacheEntry.comments;
         } else {
-            state.fetchRecipeComments(recipeId);
+            await state.fetchRecipeComments(recipeId);
             const updatedState = get();
             const updatedEntry = updatedState.comments.find(c => c.recipeId === recipeId);
             return updatedEntry ? updatedEntry.comments : [];
@@ -59,10 +59,13 @@ const useCommentStore = create((set, get) => ({
         else return -1;
     },
 
-    addComment: ({ recipeId, text }) => {
+    addComment: ( recipeId, text, responseTo ) => {
+        const data = { recipeId, text };
+        if (responseTo) data.responseTo = responseTo;
+        
         return fetcher(
             API_URLs.comment.add,
-            { recipeId, text },
+            data,
             "add comment",
             (res) => {
                 if (USE_LOCAL_CACHE) {
@@ -73,7 +76,7 @@ const useCommentStore = create((set, get) => ({
         );
     },
 
-    updateComment: ({ recipeId, text }) => {
+    updateComment: (recipeId, text ) => {
         return fetcher(
             API_URLs.comment.update,
             { recipeId, text },
@@ -89,7 +92,7 @@ const useCommentStore = create((set, get) => ({
         );
     },
 
-    deleteComment: ({ recipeId }) => {
+    deleteComment: ( recipeId ) => {
         return fetcher(
             API_URLs.comment.remove,
             { recipeId },

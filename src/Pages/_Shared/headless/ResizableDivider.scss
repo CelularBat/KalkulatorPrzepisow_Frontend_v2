@@ -11,6 +11,7 @@
     .rightPane {
       overflow: auto;
       flex: 1;
+      z-index: -1;
     }
     
     .resizer {

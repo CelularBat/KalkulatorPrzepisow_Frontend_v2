@@ -1,5 +1,5 @@
 import React from 'react';
-import './RecipeSumTable.css';
+import './RecipeSumTable.scss';
 
 const RecipeSumTable = ({RowsData})=>{
     const [Sum,setSum] = React.useState({});
@@ -38,6 +38,15 @@ const RecipeSumTable = ({RowsData})=>{
     }
     
     const tableBody = Object.entries(Sum).map((obj)=>{
+        if (obj[0]==="kj") return null;
+        if (obj[0]==="kcal"){ 
+            return (
+                <td key="kj">
+                {`${Sum.kj.value} / ${String(obj[1].value)}`}
+                </td>
+            )
+            
+        }
         return <td key={obj[0]}>
             {String(obj[1].value)}
             {obj[1].hasUndefined && " + ?"}
@@ -48,8 +57,8 @@ const RecipeSumTable = ({RowsData})=>{
         <table className="RecipeSum">
         <thead>
             <tr>           
-                <th>Kj</th>
-                <th>Kcal</th>
+                
+                <th>Kj / Kcal</th>
                 <th>Tłuszcz</th>
                 <th>Węglo</th>
                 <th>Cukier</th>

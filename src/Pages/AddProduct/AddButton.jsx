@@ -7,7 +7,7 @@ function AddButton({...rest}) {
         <div className='AddButton-container'>
        
             <Button3D className='AddProductButton' {...rest}>
-                Dodaj produkt
+                Dodaj swój produkt 
             </Button3D>
        
             

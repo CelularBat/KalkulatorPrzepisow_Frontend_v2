@@ -1,0 +1,72 @@
+/* src/SCSS_Lib/reusables/CommentBox3D.scss */
+.CommentBox3D {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 
+        -1px -1px 2px rgba(255, 255, 255, 0.8),
+        3px 3px 6px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    display: grid;
+    margin-block: 10px;
+    width: 95%;
+
+    & .frame-internal {
+        position: relative;
+        width: calc(100% - 8px);
+        max-width: calc(100% - 8px);
+        min-height: 60px;
+        place-self: center;
+        background-image:  
+            linear-gradient(135deg, $gv_primary_color1 0%, transparent 35%),
+            linear-gradient(-45deg, $gv_primary_color2 0%, transparent 35%),
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.0) 70%),
+            radial-gradient(4px 8px at 4px calc(100% - 8px), rgba(255, 255, 255, 0.25), transparent), 
+            radial-gradient(4px 8px at calc(100% - 4px) calc(100% - 8px), rgba(255, 255, 255, 0.25), transparent), 
+            radial-gradient(16px at -4px 0, white, transparent), 
+            radial-gradient(16px at calc(100% + 4px) 0, white, transparent);
+        box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.3), inset 0 -1px 3px 3px rgba(0,0,0,0.2);
+        backdrop-filter: blur(8px);
+        border-radius: 8px/16px 16px 8px 8px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        word-break: break-word;
+        text-align: left;
+        box-sizing: border-box;
+        padding: 8px 12px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2e2e2e;
+
+            .comment-date {
+                opacity: 0.8;
+            }
+
+            .comment-author {
+                font-style: italic;
+                color: #222020;
+            }
+        }
+
+        .comment-text {
+            font-size: 13px;
+            color: #000000;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        &:focus {
+            box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5), inset 0 -1px 3px 3px rgba(0,0,0,0.4);
+        }
+    }
+}

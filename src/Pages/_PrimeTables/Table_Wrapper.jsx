@@ -4,8 +4,8 @@ import Checkbox_holo from '@re/Checkboxes/Checkbox_holo';
 import IMG_EYE from '@/assets/eye.svg';
 import IMG_EYE_OFF from '@/assets/eye-slash-fill.svg';
 
-function  Table_Wrapper({children,title}) {
-    const [showTable,setShowTable] = React.useState(true);
+function  Table_Wrapper({children,title,showByDefault=true}) {
+    const [showTable,setShowTable] = React.useState(showByDefault);
 
     return (
         <div className='Table_Wrapper'>

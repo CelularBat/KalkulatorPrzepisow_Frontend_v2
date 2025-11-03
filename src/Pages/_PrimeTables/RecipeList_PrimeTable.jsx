@@ -5,7 +5,7 @@ import { FilterMatchMode } from 'primereact/api';
 
 import "./PrimeTable.css"
 
-import RecipeSumTable from '@pages/AddRecipe/RecipeSumTable';
+import RecipeSumTable from '@pages/_PrimeTables/RecipeSumTable';
 import { ActionKeysTemplate } from './_Templates/ActionKeysTemplate';
 import { RecipeExpansionTemplate } from './_Templates/RecipeExpansionTemplate/RecipeExpansionTemplate';
 
@@ -71,7 +71,7 @@ function RecipesList_PrimeTable({isPublic,TableData,defaultRows,
         
 
     return (
-    <DataTable value={TableData} 
+    <DataTable value={TableData} className='custom-mobile-table'
     stripedRows  size="small" showGridlines 
     paginator rows={defaultRows} rowsPerPageOptions={[1,5, 10, 25, 50]}
     filterDisplay="row" filters={filters}
@@ -80,7 +80,7 @@ function RecipesList_PrimeTable({isPublic,TableData,defaultRows,
     selection={selectedProduct} 
     onSelectionChange={(e) => {
         setSelectedProduct(e.value);
-        console.log(e.value);
+
         setSearchParams({id: e.value?._id || ''})
     }}
 
@@ -92,6 +92,7 @@ function RecipesList_PrimeTable({isPublic,TableData,defaultRows,
 
     rowExpansionTemplate={expansionBody} 
     expandedRows={expandedRows} 
+
     
     >   
         {/* <Column expander={true} style={{ width: '3%' }} /> */}

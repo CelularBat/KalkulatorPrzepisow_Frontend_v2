@@ -1,0 +1,47 @@
+// RecipeSum.scss
+
+
+$border-color: black;
+$text-color: rgb(0, 0, 0);
+$font-main: 'Arial', sans-serif;
+
+
+.RecipeSum {
+  width: 100%;
+  background: $gv_primaryColorGradient;
+  margin-block: 10px;
+  font-size: 0.8em;
+
+  th, td {
+    border: 1px solid $border-color;
+    padding: 10px;
+    text-align: center;
+    color: $text-color;
+    font-family: $font-main;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  thead {
+    background: $gv_primary_color1;
+    filter:brightness(92.2%) opacity(64.7%);
+    font-size: 1.2em;
+  }
+
+  tbody {
+    tr{
+        background: white;
+    }
+
+    td {
+      font-weight: 500;
+
+
+      &:hover {
+        filter:brightness(0.2);
+      }
+    }
+  }
+}

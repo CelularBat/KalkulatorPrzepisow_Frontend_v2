@@ -1,7 +1,7 @@
 import React from 'react';
 import Recipes_PrimeTable from '@pages/_PrimeTables/Recipes_PrimeTable';
 import AddPhotoURL from './AddPhotoUrl';
-import "./RecipeForm.scss"
+import "./RecipeForm2.scss"
 
 import RecipeSumTable from '../_PrimeTables/RecipeSumTable';
 
@@ -14,12 +14,13 @@ import useRecipeStore from '@zustand/recipeStore';
 import AskPopUp from '@pages/_Shared/AskPopUp';
 import Button3D from '@re/Buttons/Button3D';
 import SumHeader from './SumHeader';
+import TextArea3D from '@re/TextArea3D';
 
 
 
 
 
-const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
+const RecipeForm2 = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
     const navigate = useNavigate();
     const [RowsData,setRowsData] = React.useState([]);
     const [PhotoURL,setPhotoURL] = React.useState("");
@@ -34,6 +35,7 @@ const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
         setIsFormRecipeInEditMode
     } = useRecipeStore();
 
+    const [_textarea3D_updater,set_textarea3D_updater] = React.useState(0);
 
     const [ShowPopUpClean,setShowPopUpClean] = React.useState(false);
     // On edit save recipe to local storage
@@ -61,6 +63,7 @@ const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
             if (RecipeDataToEdit.photos.length > 0){
                 setPhotoURL(RecipeDataToEdit.photos[0]);
             }
+            set_textarea3D_updater(prev=>!prev); // here we pass states to textarea3D
         } 
         else{
             const tempCopy = localStorage.getItem('tempRecipe');
@@ -71,6 +74,7 @@ const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
                 setDescription(tempCopyInfo.description);
                 setPhotoURL(tempCopyInfo.photoURL);
             }
+            set_textarea3D_updater(prev=>!prev);
         }
         setIsDataLoaded(true);
     },[]);
@@ -128,30 +132,37 @@ const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
             setPhotoURL("");
         }
         setShowPopUpClean(false);
+        set_textarea3D_updater(prev=>!prev);
     }
 
     return (
         
-        <div className='RecipeForm'>
-            <div className='RecipeForm--Title' style={{display:"grid", placeItems:"center"}}>
+        <div className='RecipeForm2'>
+            <div className='header'>
                 <h2>Skomponuj własny przepis!</h2>
             </div>
-            <div className='title-container'>
-                        <label className='title-label' htmlFor="title">Tytuł </label>
-                        <input type="text" name="title" value={Title} 
-                        onChange={(e)=>setTitle(e.target.value)}/>
-            </div>
-            <div className='info-container'>
-                 <AddPhotoURL {...{PhotoURL,handleAddPhoto}}/>
-                 
-                 <div className='description-container'>
-                    <label className='description-label' htmlFor="Opis">Opis</label>
-                    <textarea name="Opis" value={Description} 
-                    onChange={(e)=>setDescription(e.target.value) }
+            <div className='body'>
+                <div className='title-container'>
+                    <AddPhotoURL {...{PhotoURL,handleAddPhoto}}/>
+                    <div className='title'>
+                        <TextArea3D width='100%' height='40px'
+                        onTextChangeCb={(text)=>setTitle(text)}
+                        initialText={Title}
+                        initialTextUpdater={_textarea3D_updater}
+                        maxChars={100} />
+                    </div>
+                </div>
+                <div className='info-container'>
+                    <TextArea3D width='100%' height='120px'
+                    onTextChangeCb={(text)=>setDescription(text)}
+                    initialText={Description}
+                    initialTextUpdater={_textarea3D_updater}
+                    maxChars={800} 
                     />
-                 </div>
-                 
+
+                </div>
             </div>
+
 
             <Recipes_PrimeTable {... {RowsData,handleDeleteRow,handlePortionChange}}/>
 
@@ -200,4 +211,4 @@ const RecipeForm = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
 };
 
 
-export default RecipeForm;
+export default RecipeForm2;

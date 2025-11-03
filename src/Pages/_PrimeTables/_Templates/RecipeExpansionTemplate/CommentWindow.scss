@@ -1,14 +1,6 @@
 .CommentWindow{
     width: 90%;
-  border: aliceblue 3px solid;
-  z-index: 10;
-  border-radius: 20px;
-  position: relative;
-  overflow:hidden;
+    
 
-    &  .commentArea{
-        width: 100%;
-        z-index: 0;
-        position: relative;
-    }
+
 }

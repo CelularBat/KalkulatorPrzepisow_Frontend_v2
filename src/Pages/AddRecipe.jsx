@@ -9,6 +9,7 @@ import Table_Wrapper from './_PrimeTables/Table_Wrapper';
 import './AddRecipe.scss'
 import ResizableDivider from './_Shared/headless/ResizableDivider';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import RecipeForm2 from './AddRecipe/RecipeForm2';
 
 
 
@@ -52,19 +53,20 @@ function AddRecipe({}) {
             {
                 isMobileView? // Mobile view
                     <>
-                        <RecipeForm {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
+                        
                         <div className='tableContainer'>
-                            <Table_Wrapper title={"Moja baza produktów"}>
+                            <Table_Wrapper title={"Moja baza produktów"} showByDefault={false}>
                             <UserProducts_PrimeTable TableData={userProducts} 
                                 IsInRecipeMode={true}   {...{onClickAddToRecipe}} />
                             </Table_Wrapper>
                         
 
-                            <Table_Wrapper title={"Publiczna baza produktów"}>
+                            <Table_Wrapper title={"Publiczna baza produktów"} showByDefault={false}>
                             <PublicProducts_PrimeTable TableData={publicProducts}
                                 IsInRecipeMode={true}   {...{ onClickAddToRecipe}} />
                             </Table_Wrapper>
                         </div>
+                        <RecipeForm {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
 
                     </>
 
@@ -73,7 +75,8 @@ function AddRecipe({}) {
                 <ResizableDivider defaultLeftWidth={50} min={40} max={70}
 
                 leftContent={
-                    <RecipeForm {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
+                    // <RecipeForm {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
+                    <RecipeForm2 {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
                 }
 
                 rightContent={

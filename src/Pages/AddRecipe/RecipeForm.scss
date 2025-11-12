@@ -74,6 +74,7 @@ $font-size-header: 1.8em;
     align-items: center;
     justify-content: stretch;
     align-self: center;
+    gap: 8px;
 
     .title-label {
       background-color: $RecipeForm-primary-bg-color;

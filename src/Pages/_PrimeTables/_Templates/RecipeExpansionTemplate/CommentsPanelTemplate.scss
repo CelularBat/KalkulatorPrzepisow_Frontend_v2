@@ -12,6 +12,7 @@
         gap:15px;
         padding-left: 30px;
         
+        
         min-height: 50px;
         filter:saturate(1);
         z-index: 0;
@@ -23,7 +24,7 @@
         
     }
 
-    & >.commentWritter{
+    & .commentWritter{
         display: flex;
         flex-direction: row;
         gap:15px;

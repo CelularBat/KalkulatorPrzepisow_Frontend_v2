@@ -1,12 +1,12 @@
 /* src/zustand/userStore.js */
 import { create } from 'zustand';
 import { API_URLs } from '@/API/API_Handler.js';
-import { useToast_noReact } from './widgets/ToastManager';
+import { useToast_noReact } from '../zustand/widgets/ToastManager';
 import { fetcher } from './_fetcher';
 
 export const useUserStore = create((set) => ({
   G_IsUserLoggedIn: false,
-  G_UserName: 'Anonim',
+  G_UserName: 'NIEZALOG',
 
   setG_IsUserLoggedIn: (value) => set({ G_IsUserLoggedIn: value }),
   setG_UserName: (value) => set({ G_UserName: value }),

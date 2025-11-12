@@ -76,15 +76,15 @@ const useCommentStore = create((set, get) => ({
         );
     },
 
-    updateComment: (recipeId, text ) => {
+    updateComment: (_id, text ) => {
         return fetcher(
             API_URLs.comment.update,
-            { recipeId, text },
+            { _id, text },
             "update comment",
             () => {
                 if (USE_LOCAL_CACHE) {
                     set(state => ({
-                        comments: state.comments.map(c => c.id === recipeId ? { ...c, text } : c)
+                        comments: state.comments.map(c => c.id === _id ? { ...c, text } : c)
                     }));
                 }
             },
@@ -92,15 +92,15 @@ const useCommentStore = create((set, get) => ({
         );
     },
 
-    deleteComment: ( recipeId ) => {
+    deleteComment: ( _id ) => {
         return fetcher(
             API_URLs.comment.remove,
-            { recipeId },
+            { _id },
             "delete comment",
             () => {
                 if (USE_LOCAL_CACHE) {
                     set(state => ({
-                        comments: state.comments.filter(c => c.id !== recipeId)
+                        comments: state.comments.filter(c => c.id !== _id)
                     }));
                 }
             },

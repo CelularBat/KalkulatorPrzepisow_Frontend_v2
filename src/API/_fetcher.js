@@ -1,6 +1,6 @@
 import { fetchAPI } from '@/API/API_Handler.js';
 import log from '@utils/Logger';
-import { useToast_noReact } from './widgets/ToastManager';
+import { useToast_noReact } from '../zustand/widgets/ToastManager';
 import { create } from 'zustand';
 
 
@@ -33,7 +33,7 @@ export async function fetcher(API_URL, data , endpointName, onSuccess, onSuccess
         }
     }
     catch(err){
-        log.error(`Unexpected API error while fething ${endpointName}:`, err);
+        log.error(`Unexpected API error while fething ${endpointName}:`, err, data);
         return { status: -1 };
 
     }

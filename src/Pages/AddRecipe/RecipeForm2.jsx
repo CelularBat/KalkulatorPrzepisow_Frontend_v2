@@ -10,12 +10,11 @@ import { delayFunction } from '@utils/Utils';
 import log from '@utils/Logger';
 import { useNavigate } from 'react-router-dom';
 
-import useRecipeStore from '@zustand/recipeStore';
-import AskPopUp from '@pages/_Shared/AskPopUp';
+import useRecipeStore from '@/API/recipeStore';
 import Button3D from '@re/Buttons/Button3D';
 import SumHeader from './SumHeader';
 import TextArea3D from '@re/TextArea3D';
-
+import useAskPopUp from '@zustand/widgets/AskPopUpManager';
 
 
 
@@ -37,7 +36,7 @@ const RecipeForm2 = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
 
     const [_textarea3D_updater,set_textarea3D_updater] = React.useState(0);
 
-    const [ShowPopUpClean,setShowPopUpClean] = React.useState(false);
+    const {showAskPopUp,hideAskPopUp} = useAskPopUp();
     // On edit save recipe to local storage
     React.useEffect(()=>{
         if (RowsData.length > 0) {
@@ -131,7 +130,7 @@ const RecipeForm2 = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
             setDescription("");
             setPhotoURL("");
         }
-        setShowPopUpClean(false);
+        hideAskPopUp();
         set_textarea3D_updater(prev=>!prev);
     }
 
@@ -197,15 +196,11 @@ const RecipeForm2 = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
            
 
             <Button3D className='recipeBtn clear'
-                onClick={()=>setShowPopUpClean(true)}>
+                onClick={()=>showAskPopUp(onCleanForm,`Czy na pewno wyczyścić wszystko ?`, "Tak" , "Nie")}>
                     Wyczyść wszystko!
             </Button3D>
 
-            <AskPopUp callBack={onCleanForm} isShown={ShowPopUpClean}
-             question="Wyczyścić wszystko?" />
 
-
-            
         </div>
     );
 };

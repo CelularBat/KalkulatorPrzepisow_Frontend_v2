@@ -10,7 +10,7 @@ import { delayFunction } from '@utils/Utils';
 import log from '@utils/Logger';
 import { useNavigate } from 'react-router-dom';
 
-import useRecipeStore from '@zustand/recipeStore';
+import useRecipeStore from '@/API/recipeStore';
 import AskPopUp from '@pages/_Shared/AskPopUp';
 import Button3D from '@re/Buttons/Button3D';
 import SumHeader from './SumHeader';

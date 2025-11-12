@@ -18,8 +18,9 @@ export const RecipeExpansionTemplate = ({rowData})=>{
 
             <div style={{ display:'flex',
             flexDirection:`${isMobile?"column":"row"}`
-            ,gap:"15px", 
-            paddingRight:"20px" , width:"100%", whiteSpace: "pre-wrap"}}>
+            ,gap:"15px", paddingRight:"20px" 
+            ,width:"100%", whiteSpace: "pre-wrap",
+            marginBottom:"20px"}}>
 
                 <div>
                     <h3>Składniki:</h3>

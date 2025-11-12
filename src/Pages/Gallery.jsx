@@ -1,7 +1,7 @@
 import React from 'react';
 import Table_Wrapper from './_PrimeTables/Table_Wrapper';
 import RecipesList_PrimeTable from './_PrimeTables/RecipeList_PrimeTable';
-import useRecipeStore from '@zustand/recipeStore';
+import useRecipeStore from '@/API/recipeStore';
 import useAskPopUp from '@zustand/widgets/AskPopUpManager';
 import { useNavigate } from 'react-router-dom';
 

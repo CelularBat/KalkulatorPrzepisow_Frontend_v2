@@ -2,23 +2,26 @@ import React from 'react';
 import './CommentsPanelTemplate.scss'
 import Checkbox_holo from '@re/Checkboxes/Checkbox_holo';
 import ICON from '@/assets/comment-dots-solid-full.svg'
-import useCommentStore from '@zustand/commentStore';
+import useCommentStore from '@/API/commentStore';
 import Button3D from '@re/Buttons/Button3D';
-import CommentWindow from './CommentWindow';
-import TextArea3D from '@re/TextArea3D';
 import CommentBox3D from '@re/CommentBox3D';
+import CommentWritter from './CommentWritter';
+import createCommentsTree from './commentsTreeBuilder';
+import { useUserStore } from '@/API/userStore';
 
 
 const CommentsPanelTemplate = ({recipeId})=>{
-
+    const {G_UserName} = useUserStore()
     const {getRecipeCommentsCount,getRecipeComments,addComment,updateComment,deleteComment} = useCommentStore();
 
     const [commentsCount,setCommentsCount] = React.useState( null);
     const [comments,setComments] = React.useState([]);
     const [showingComments,setShowingComment] = React.useState(false);
     const [showAddCommentWindow,setShowAddCommentWindow] = React.useState(false);
-
     const [newCommentText,setNewCommentText] = React.useState();
+
+    const [replyToCommentId, setReplyToCommentId] = React.useState(null);
+    const [replyText, setReplyText] = React.useState('');
 
  
 
@@ -43,8 +46,7 @@ const CommentsPanelTemplate = ({recipeId})=>{
         }
         else{
             const comments = await getRecipeComments(recipeId);
-            console.log(comments)
-            setComments(comments);
+            setComments(createCommentsTree(comments));
             setShowingComment(true);
         }
         
@@ -54,17 +56,51 @@ const CommentsPanelTemplate = ({recipeId})=>{
         const res = await addComment(recipeId,newCommentText);
         if (res.status === 1){
             const comments = await getRecipeComments(recipeId,true);
-            setComments(comments);
+            setComments(createCommentsTree(comments));
             setShowAddCommentWindow(false);
             refreshCommentsCount();
-        }
-        
+        } 
+    }
+
+    async function onAddReply(_id){
+        const res = await addComment(recipeId,replyText,_id);
+        if (res.status === 1){
+            const comments = await getRecipeComments(recipeId,true);
+            setComments(createCommentsTree(comments));
+            setReplyToCommentId(-1);
+            refreshCommentsCount();
+        } 
+    }
+
+    async function onDeleteComment(_id){
+        console.log("id",_id)
+        const res = await deleteComment(_id);
+        if (res.status === 1){
+            const comments = await getRecipeComments(recipeId,true);
+            setComments(createCommentsTree(comments));
+            setReplyToCommentId(-1);
+            refreshCommentsCount();
+        } 
     }
 
     const renderComments = comments.map((c,idx)=>
-        <CommentBox3D key={idx}
+        <>
+            <CommentBox3D key={idx} showReplyBtn={true} 
             {...c}
-        />
+            OnReply={(id)=>setReplyToCommentId(id)}
+            style={{ marginLeft: c.level * 7 }}
+            showDeleteBtn={c.author === G_UserName}
+            OnDelete={onDeleteComment}
+            />
+
+            {replyToCommentId === c._id &&
+                <CommentWritter 
+                onTextChangeCb={(text)=>setReplyText(text)}
+                onAddComment={()=>onAddReply(c._id)}
+                onCancel={()=>{setReplyToCommentId(-1)}}
+                />
+            }
+        </>
     )
 
     return (
@@ -82,29 +118,24 @@ const CommentsPanelTemplate = ({recipeId})=>{
                 }
                 
 
-               {    !showAddCommentWindow && 
-                <Button3D className='commentBtn add' onClick={onWriteComment}>
-                    Dodaj komentarz  <img src={ICON}/>
-                </Button3D>}
+               {!showAddCommentWindow && 
+                    <Button3D className='commentBtn add' onClick={onWriteComment}>
+                        Dodaj komentarz  <img src={ICON}/>
+                    </Button3D>}
             </div>
 
-            {showAddCommentWindow &&
-            <div className='commentWritter'>
-                <TextArea3D width='100%' height='100px' expandable={true} maxChars={500} 
-                    onTextChangeCb={(text)=>setNewCommentText(text)}
-                    style={{color:"black"}}
+            {showAddCommentWindow &&     
+                <CommentWritter 
+                onTextChangeCb={(text)=>setNewCommentText(text)}
+                onAddComment={onAddComment}
+                onCancel={()=>{setShowAddCommentWindow(false)}}
                 />
-                
-                <Button3D className='recipeBtn add img' onClick={onAddComment}>
-                    Wyślij!
-                </Button3D>
-            </div>
             }
 
             { showingComments &&
-            <div className='body'>
-                {renderComments}
-            </div>
+                <div className='body'>
+                    {renderComments}
+                </div>
             }
             
         </div>

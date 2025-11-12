@@ -50,10 +50,6 @@
     font-weight: 600;
   }
 
-  &.EditButton{
-    @include Button3D-modHeight(28px);
-    @include Button3D-modColor(rgb(101, 103, 104), rgb(68, 185, 0)); 
-  }
 
   &.productBtn{
     font-size: 1.4rem;
@@ -69,34 +65,57 @@
 
   }
 
+  &.sqr{
+    width:90px !important;
+    @include Button3D-modHeight(90px);
+  }
+
+  &.small{
+    width:90px !important;
+    @include Button3D-modHeight(30px);
+  }
+
+  &.add{
+    @include Button3D-modColor(#156604, rgb(207, 236, 137),true);
+  }
+
+  &.clear{
+    @include Button3D-modColor(rgb(214, 98, 98), rgb(255, 238, 0),true);
+  }
 
   &.recipeBtn{
     width:100%;
-    
     font-family: 'Arial', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    &.add{
-      @include Button3D-modColor(#156604, rgb(207, 236, 137),true);
-      &.img{
-        width:90px;
-        @include Button3D-modHeight(90px);
-      }
-
-    }
-
-    &.clear{
-      @include Button3D-modColor(rgb(226, 20, 20), rgb(255, 238, 0),true);
-
-    }
-
   }
 
   &.commentBtn{
     @include Button3D-modHeight(35px);
     @include Button3D-modColor(rgb(67, 125, 143), rgb(223, 213, 76));
   }
+
+  &.actionKey{
+    transform: scale(0.9);
+    font-weight: bold;
+    font-size: medium;
+    @include Button3D-modHeight(30px);
+    //min-width: 30px;
+    width:30px;
+    @include Button3D-modColor(bisque, green,true);
+    
+    &.red{
+      font-weight: bold;
+      font-size:medium;
+      
+      @include Button3D-modFontColor(red,true)
+    }
+  }
 }
+
+
+
+
 
 .Button3D:disabled {
   cursor: not-allowed;

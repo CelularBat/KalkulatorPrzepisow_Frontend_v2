@@ -38,7 +38,7 @@ const AddPhotoURL = ({PhotoURL,handleAddPhoto})=>{
                 PhotoURL?
                 <PreviewContainer {...{PhotoURL,handleSpawnDeleteForm}}/>
                 :
-                <Button3D className="recipeBtn add img" onClick={ ()=>setIsAddFormOn(true) }>
+                <Button3D className="recipeBtn add sqr" onClick={ ()=>setIsAddFormOn(true) }>
                     Dodaj Zdjęcie! 
                 </Button3D>  
             }

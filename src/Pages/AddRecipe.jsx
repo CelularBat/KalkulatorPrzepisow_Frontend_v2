@@ -2,8 +2,8 @@ import React from 'react';
 import RecipeForm from './AddRecipe/RecipeForm';
 import UserProducts_PrimeTable from './_PrimeTables/UserProducts_PrimeTable';
 import PublicProducts_PrimeTable from './_PrimeTables/PublicProducts_PrimeTable';
-import useProductStore from '@zustand/productStore';
-import useRecipeStore from '@zustand/recipeStore';
+import useProductStore from '@/API/productStore';
+import useRecipeStore from '@/API/recipeStore';
 import Table_Wrapper from './_PrimeTables/Table_Wrapper';
 
 import './AddRecipe.scss'

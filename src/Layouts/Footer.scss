@@ -9,16 +9,18 @@ footer{
     padding: 0 5%;
     position: static;
     bottom: 0;
-    gap:15px;
+   
     font-family: $g_Font_handwritting;
 
-    & > h3{
+
+
+    &  h3{
         font-size: 0.9rem;
         
         font-style: italic;
     }
 
-    & > a{
+    &  a{
         font-family: Arial, Helvetica, sans-serif;
     }
 
@@ -37,6 +39,24 @@ footer{
             & > input{
                 margin-left: 3px;
             }
+        }
+    }
+    
+    & .title{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap:10px;
+    }
+}
+
+@media(max-width:$g_breakpoint-md){
+    footer{
+        flex-direction: column;
+        & .theming{
+            padding-top:10px;
+            justify-content: center;
+            margin-right:0;
         }
     }
 }

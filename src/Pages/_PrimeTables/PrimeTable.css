@@ -10,7 +10,7 @@
 .p-fluid .p-column-filter-element{
     min-width: 100%;
 }
-
+/* mobile */
 @media (max-width: 768px) {
     .custom-mobile-table .p-datatable-tbody > tr {
       display: flex;
@@ -68,35 +68,3 @@
     height:25px;
 }
 
-.UserTable--button{
-    width:20px;
-    height:20px;
-    display: grid;
-    place-content: center;
-    background-color: var(--backgroud-color);
-    margin: auto;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: .6em 1em;
-    cursor: grab;
-}
-.UserTable--button:hover{
-    background-color: var(--primary-color1);
-}
-
-
-.UserTable--button.edit-button{
-    color: green;
-    
-}
-
-.UserTable--button.delete-button{
-    color: red;
-    
-}
-
-.UserTable--button.addToRecipe-button{
-    color: green;
-    font-weight: bolder;
-    font-size: large;
-}

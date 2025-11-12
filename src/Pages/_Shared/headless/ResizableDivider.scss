@@ -6,12 +6,13 @@
 
     .leftPane {
       overflow: auto;
+      z-index: 0;
     }
     
     .rightPane {
       overflow: auto;
       flex: 1;
-      z-index: -1;
+      z-index: 0;
     }
     
     .resizer {

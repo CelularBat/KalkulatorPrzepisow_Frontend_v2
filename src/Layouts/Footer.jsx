@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Footer.scss"
 import { useSettingsStore } from '@zustand/settingsStore';
+import Button3D from '@re/Buttons/Button3D';
 
 function Footer({}) {
     const primaryColor1 = useSettingsStore(state => state.primary_color1);
@@ -43,10 +44,12 @@ function Footer({}) {
             </label>
         
         </div>
-        <h3>Kalkulator wartości odżywczych przepisów.</h3>
-        <a href="https://github.com/CelularBat/KalkulatorPrzepisow_Frontend">
-            <span>by CelularBat</span>
-        </a>
+        <div className='title'>
+            <h3>Kalkulator wartości odżywczych przepisów.</h3>
+            <a href="https://github.com/CelularBat/KalkulatorPrzepisow_Frontend">
+                <span>by CelularBat</span>
+            </a>
+        </div>
         
     </footer>
     

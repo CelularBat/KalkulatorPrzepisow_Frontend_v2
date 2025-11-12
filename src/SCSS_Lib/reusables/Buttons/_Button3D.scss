@@ -180,7 +180,7 @@
           &::after {
             background-image: radial-gradient(
               color.adjust($top-bg-start, $lightness: 15%),
-              color.adjust($top-bg-end, $lightness: 15%)
+              color.adjust($top-bg-end, $lightness: 5%)
             );
           }
         }

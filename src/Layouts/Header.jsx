@@ -7,7 +7,7 @@ import LoginForm from './Header/LoginForm';
 import UserPanel from './Header/UserPanel';
 import Button3D from '@re/Buttons/Button3D'
 
-import { useUserStore } from '@zustand/userStore';
+import { useUserStore } from '@/API/userStore';
 import {useToast} from '@zustand/widgets/ToastManager'
 
 

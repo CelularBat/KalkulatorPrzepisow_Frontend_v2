@@ -73,7 +73,7 @@ async function fetchAPI (api_url,data = ''){
         return response.json();
     })
     .catch((error) => {
-        console.error('Error fetching API:', error);
+        console.error('Error fetching API:', error, data);
         return ({
             msg: "Error fetching API",
             status: -1

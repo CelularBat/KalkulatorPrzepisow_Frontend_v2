@@ -1,23 +1,32 @@
 import React from "react";
+import { createPortal } from 'react-dom';
 import "./AddPhotoUrl.css"
 
-
-
 import IMG_trashbin from "@/assets/trashbin.svg"
-
 
 import AddPhotoURLOverlay from "./AddPhotoOverlay";
 import Button from "@pages/_Shared/Button_PopUp";
 import Button3D from "@re/Buttons/Button3D";
 
+import useAskPopUp from '@zustand/widgets/AskPopUpManager';
+    
+
 const AddPhotoURL = ({PhotoURL,handleAddPhoto})=>{
     const [IsAddFormOn,setIsAddFormOn] = React.useState(false);
-    const [IsDeleteFormOn,setIsDeleteFormOn] = React.useState(false);
+ 
+
+    const {showAskPopUp,hideAskPopUp} = useAskPopUp();
 
 
-    function handleSpawnDeleteForm(){
-        setIsDeleteFormOn(true);
+    function handleDeletePhoto(){
+        showAskPopUp(onPopUpDelete,`Czy na pewno usunąć zdjęcie?`, "Usuń zdjęcie" , "Anuluj");
+
+        function onPopUpDelete(result){
+            if (result) handleAddPhoto("");
+            hideAskPopUp();
+        }
     }
+
     function handleForm(formResult,url){
         switch (formResult){
             case "add": handleAddPhoto(url);
@@ -29,52 +38,39 @@ const AddPhotoURL = ({PhotoURL,handleAddPhoto})=>{
         }
 
         setIsAddFormOn(false);
-        setIsDeleteFormOn(false);
+
     }
 
     return(
         <div className='AddPhotoURL'>
             {   
                 PhotoURL?
-                <PreviewContainer {...{PhotoURL,handleSpawnDeleteForm}}/>
+                <PreviewContainer {...{PhotoURL,handleDeletePhoto}}/>
                 :
                 <Button3D className="recipeBtn add sqr" onClick={ ()=>setIsAddFormOn(true) }>
                     Dodaj Zdjęcie! 
                 </Button3D>  
             }
               
-            {IsAddFormOn && <AddPhotoURLOverlay {...{handleForm}}/>}
-            {IsDeleteFormOn && <AskDeletePhotoForm {...{handleForm}} />}
+            {IsAddFormOn && 
+              createPortal(
+                <AddPhotoURLOverlay {...{handleForm}}/>,
+                document.body
+            )}
+
         </div>
     );
 }
 export default AddPhotoURL;
 
-// Component AskDeletePhotoForm
-//////////////////////////////
-const AskDeletePhotoForm = ({handleForm})=>{
-    return (
-    <div className="overlay">
-        <div className="AddPhotoURLOverlay" >
-            <div className="url-box">
-              <Button type="cancel"
-              onClick={()=>{handleForm("remove")}}>Usuń zdjęcie</Button>  
-                <span>Czy na pewno usunąć zdjęcie?</span>
-              <Button type="ok"
-                onClick={()=>{handleForm("cancel")}}>Anuluj</Button>
-            </div>
-        </div>
-    </div>
-    );
-}
 
 
 // Component PreviewContainer
 ////////////////////////////
-const PreviewContainer = ({PhotoURL,handleSpawnDeleteForm})=>{
+const PreviewContainer = ({PhotoURL,handleDeletePhoto})=>{
     return(
         <div className="preview-container">
-            <button className="btn-delete" onClick={handleSpawnDeleteForm}> 
+            <button className="btn-delete" onClick={handleDeletePhoto}> 
                 <img src={IMG_trashbin} />
             </button>
 

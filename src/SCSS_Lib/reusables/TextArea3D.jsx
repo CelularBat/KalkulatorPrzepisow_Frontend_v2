@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx'; 
 import './TextArea3D.scss';
 
-const TextArea3D = ({ initialText,initialTextUpdater,onTextChangeCb, width = '300px', height='150px', expandable=true, maxChars=500, className = '', style, ...rest }) => {
+const TextArea3D = ({ initialText,placeholder,initialTextUpdater,onTextChangeCb, width = '300px', height='150px', expandable=true, maxChars=500, className = '', style, ...rest }) => {
 
   const combinedClasses = clsx('TextArea3D', className);
 /* In this component textContent isn't controlled by React (it was too messy with jumping pointer), but it's not a problem.
@@ -64,6 +64,7 @@ const TextArea3D = ({ initialText,initialTextUpdater,onTextChangeCb, width = '30
     >
        
         <div className="frame-internal" ref={innerFrame_Ref}
+            data-placeholder={placeholder} 
             contentEditable={"plaintext-only"}
             suppressContentEditableWarning
             onInput={handleInput}

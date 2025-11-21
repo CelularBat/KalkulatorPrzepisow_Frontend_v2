@@ -145,6 +145,7 @@ const RecipeForm2 = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
                     <AddPhotoURL {...{PhotoURL,handleAddPhoto}}/>
                     <div className='title'>
                         <TextArea3D width='100%' height='40px'
+                        placeholder={"Tytuł"}
                         onTextChangeCb={(text)=>setTitle(text)}
                         initialText={Title}
                         initialTextUpdater={_textarea3D_updater}
@@ -153,6 +154,7 @@ const RecipeForm2 = ({AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}) => {
                 </div>
                 <div className='info-container'>
                     <TextArea3D width='100%' height='120px'
+                    placeholder={"Opis przepisu..."}
                     onTextChangeCb={(text)=>setDescription(text)}
                     initialText={Description}
                     initialTextUpdater={_textarea3D_updater}

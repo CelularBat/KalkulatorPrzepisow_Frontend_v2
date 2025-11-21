@@ -66,7 +66,7 @@ function AddRecipe({}) {
                                 IsInRecipeMode={true}   {...{ onClickAddToRecipe}} />
                             </Table_Wrapper>
                         </div>
-                        <RecipeForm {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
+                        <RecipeForm2 {...{AddProductRow,onRecipeFormSubmit,onRecipeFormUpdate}}/>
 
                     </>
 

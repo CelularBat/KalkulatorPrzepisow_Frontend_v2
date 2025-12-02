@@ -5,7 +5,7 @@ import './Checkbox_holo.scss';
 const Checkbox_holo = ({ children, alternativeChildren, className = '', ...rest }) => {
   const [checked, setChecked] = useState(rest.checked || false);
   const combinedClasses = clsx('Checkbox_holo', className, { checked });
-
+  
   const handleChange = (e) => {
     setChecked(e.target.checked);
     if (rest.onChange) rest.onChange(e);

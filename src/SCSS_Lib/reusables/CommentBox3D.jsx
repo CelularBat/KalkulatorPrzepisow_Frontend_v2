@@ -12,7 +12,7 @@ const formatDate = (isoString) => {
     hour: '2-digit',
     minute: '2-digit',
   });
-};
+}; 
 
 const CommentBox3D = ({ author, createdAt, text,_id, _isDeleted,
   showReplyBtn=true, OnReply,

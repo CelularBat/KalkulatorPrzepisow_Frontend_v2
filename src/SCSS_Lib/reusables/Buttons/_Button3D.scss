@@ -45,12 +45,11 @@
         text-align: center;
         color: $fontColor;
         text-shadow: 0 -1px rgba(0, 0, 0, .25);
-        transition-property: transform;
-        transition-duration: .2s;
+
         -webkit-user-select: none;
         user-select: none;
         box-sizing: content-box;
-        transition: color 3s ease, text-shadow 1s ease, transform .2s ease;
+        transition: color 3s ease, text-shadow 3s ease, transform .2s ease;
   
         &::after {
           content: '';

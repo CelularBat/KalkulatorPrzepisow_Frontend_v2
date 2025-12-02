@@ -19,6 +19,7 @@ export async function fetcher(API_URL, data , endpointName, onSuccess, onSuccess
                 useToast_noReact(onSuccessToastMsg, "success");
             }
             onSuccess(res);
+            log.debug(`Successful fetch for ${endpointName} : `,res);
             return(res)
         }
         else if (res.status === 0){
@@ -27,9 +28,12 @@ export async function fetcher(API_URL, data , endpointName, onSuccess, onSuccess
             return { res };
         }
         else if (res.status === -1){
-            log.error("Failed to add comment - connection problems.");
+            log.error("Failed to fetch - connection problems.");
             useToast_noReact("Oops! \n Connection problems!", "error");
             return { status: -1 };
+        }
+        else {
+            throw new Error("unknow status");
         }
     }
     catch(err){

@@ -8,7 +8,7 @@
     - ERROR
 Set the desired logging level here: */
 
-const LOGGING_LEVEL = "WARN";
+const LOGGING_LEVEL = "DEBUG";
 
 
 

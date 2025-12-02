@@ -3,6 +3,8 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 
+import { Image } from 'primereact/image';
+
 import "./PrimeTable.css"
 
 import RecipeSumTable from '@pages/_PrimeTables/RecipeSumTable';
@@ -15,8 +17,8 @@ import { useSearchParams } from 'react-router-dom';
 
 
 
-function RecipesList_PrimeTable({isPublic,TableData,defaultRows,
-    handleDeleteRecipe,handleEditRecipe
+function RecipesList_PrimeTable({ isPublic, TableData, defaultRows,
+    handleDeleteRecipe, handleEditRecipe
 }) {
 
     const [filters, setFilters] = React.useState();
@@ -25,99 +27,126 @@ function RecipesList_PrimeTable({isPublic,TableData,defaultRows,
 
     // URL with id - link integration
     const [searchParams, setSearchParams] = useSearchParams();
-    React.useEffect( ()=>{
+    React.useEffect(() => {
+        // Scroll to recipe ID
         const recipeId = searchParams.get("id");
-        const rowData = TableData.find(row=>row._id === recipeId);
-        if (rowData){
+        const rowData = TableData.find(row => row._id === recipeId);
+        if (rowData) {
             setSelectedProduct(rowData);
             setExpandedRows([rowData]);
         }
         const el = document.querySelector(`.rowId-${recipeId}`);
         el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-    },[TableData]);
+
+        // Set Author filter
+        const authorFilter = searchParams.get("author");
+        if (isPublic && authorFilter) {
+            setAuthorFilter(authorFilter);
+        }
+
+    }, [TableData]);
+
+    function setAuthorFilter(value){
+        setFilters(prev=>({
+            ...prev,
+            author: { ...prev?.author, 
+                value: value ,
+                matchMode: FilterMatchMode.CONTAINS
+            }
+        }));
+    }
 
 
     const dataLabels = {
-        name: {label:"Nazwa" ,hasFilter:true},
+        name: { label: "Nazwa", hasFilter: true },
     }
 
     //Main columns
     const initColumns = Object.entries(dataLabels)
-    .map(([dataKey,keys])=>{
-       return <Column key={dataKey} field={dataKey} header={keys.label} sortable
-       {...(keys.hasFilter && {filter: true, filterPlaceholder:"filtruj", 
-        filterMatchMode:FilterMatchMode.CONTAINS, matchMode:"contains" })} 
-       />
-    })
-    
+        .map(([dataKey, keys]) => {
+            return <Column key={dataKey} field={dataKey} header={keys.label} sortable
+                {...(keys.hasFilter && {
+                    filter: true, filterPlaceholder: "filtruj",
+                    filterMatchMode: FilterMatchMode.CONTAINS, matchMode: "contains"
+                })}
+            />
+        })
+
     // Custom colums
 
-    const nutritionColumnBody = (rowData)=>{
+    const nutritionColumnBody = (rowData) => {
         return <RecipeSumTable RowsData={rowData.productsList} />
     }
-        
-    const actionColumnBody = (rowData)=>
+
+    const actionColumnBody = (rowData) =>
         <ActionKeysTemplate rowData={rowData}
-        onClickEdit={handleEditRecipe}
-        onClickDelete={handleDeleteRecipe}
+            onClickEdit={handleEditRecipe}
+            onClickDelete={handleDeleteRecipe}
         />
-    
-    const photoColumnBody = (rowData)=>
-        <PhotoTemplate rowData={rowData}/>
-    
+
+    const photoColumnBody = (rowData) =>
+        <PhotoTemplate rowData={rowData} />
+
     const expansionBody = (rowData) =>
         <RecipeExpansionTemplate rowData={rowData} />
-        
+
 
     return (
-    <DataTable value={TableData} className='custom-mobile-table'
-    stripedRows  size="small" showGridlines 
-    paginator rows={defaultRows} rowsPerPageOptions={[1,5, 10, 25, 50]}
-    filterDisplay="row" filters={filters}
+        <DataTable value={TableData} className='custom-mobile-table'
+            stripedRows size="small" showGridlines
+            paginator rows={defaultRows} rowsPerPageOptions={[1, 5, 10, 25, 50]}
+            filterDisplay="row" filters={filters}
 
-    selectionMode="single"
-    selection={selectedProduct} 
-    onSelectionChange={(e) => {
-        setSelectedProduct(e.value);
+            selectionMode="single"
+            selection={selectedProduct}
+            onSelectionChange={(e) => {
+                setSelectedProduct(e.value);
 
-        setSearchParams({id: e.value?._id || ''})
-    }}
+                setSearchParams({ id: e.value?._id || '' })
+            }}
 
-    rowClassName={(rowData) => `rowId-${rowData._id}`} 
+            rowClassName={(rowData) => `rowId-${rowData._id}`}
 
-    onRowToggle={(e) => {setExpandedRows(e.data)}}
-    onRowSelect={(e) => { setExpandedRows([e.data]); } }
-    onRowUnselect={(e) => { setExpandedRows([]); } }
+            onRowToggle={(e) => { setExpandedRows(e.data) }}
+            onRowSelect={(e) => { setExpandedRows([e.data]); }}
+            onRowUnselect={(e) => { setExpandedRows([]); }}
 
-    rowExpansionTemplate={expansionBody} 
-    expandedRows={expandedRows} 
+            rowExpansionTemplate={expansionBody}
+            expandedRows={expandedRows}
 
-    
-    >   
-        {/* <Column expander={true} style={{ width: '3%' }} /> */}
-        <Column header="Zdjęcie" body={ photoColumnBody} style={{width:"10%"}}/>       
-        {initColumns}
-        <Column header="Wartość odżywcza" body={ nutritionColumnBody} />
 
-        {isPublic?
-            <Column header="Autor" field="author" style={{ width: '3%' }}  />
-        :
-            <Column header="" body={ actionColumnBody} />
-        }
-        
-        
-    </DataTable>
+        >
+            {/* <Column expander={true} style={{ width: '3%' }} /> */}
+            <Column header="Zdjęcie" body={photoColumnBody} style={{ width: "10%" }} />
+            {initColumns}
+            <Column header="Wartość odżywcza" body={nutritionColumnBody} />
+
+            {isPublic ?
+                <Column header="Autor" field="author" style={{ width: '5%' }}
+                    filter={true} filterPlaceholder="filtruj"
+                    filterMatchMode={FilterMatchMode.CONTAINS} matchMode="contains"
+                    body={(rowData) => (
+                        <a className='authorLink' onClick={()=>setAuthorFilter(rowData.author)}>
+                            {rowData.author}
+                        </a>
+                    )}
+                />
+                :
+                <Column header="" body={actionColumnBody} />
+            }
+
+
+        </DataTable>
     );
 }
 
-const PhotoTemplate = ({rowData})=>{
-    const photo= (rowData?.photos && rowData?.photos.length > 0) ? rowData.photos[0] : undefined ;
+const PhotoTemplate = ({ rowData }) => {
+    const photo = (rowData?.photos && rowData?.photos.length > 0) ? rowData.photos[0] : undefined;
 
-    return photo?(
-        <div style={{width:"100%",height:"100%",overfloe:"hidden"}}>
-            <img src={photo} style={{width:"100%",height:"auto",overfloe:"hidden"}}/>
-        </div>      
+    return photo ? (
+        <div style={{ width: "100%", height: "100%", overfloe: "hidden", cursor: "ew-resize" }}>
+            <Image src={photo} preview width='100%' onClick={(e) => e.preventDefault()} />
+        </div>
     ) : null;
 }
 

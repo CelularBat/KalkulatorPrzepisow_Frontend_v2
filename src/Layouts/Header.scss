@@ -7,7 +7,9 @@ nav{
     width:100vw;
     position: relative;
     padding-left: 15px;
-    box-shadow: 2px 3px 2px $gv_primary_color1;
+    box-shadow: 2px 3px 2px $gv_primary_color1,
+             2px 3px 10px 4px $gv_primary_color1
+    ;
     z-index: 999;
 
     @media (max-width: $g_breakpoint-md) {

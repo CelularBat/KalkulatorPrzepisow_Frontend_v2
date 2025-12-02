@@ -4,6 +4,20 @@ import { API_URLs } from '@/API/API_Handler.js';
 import { useToast_noReact } from '../zustand/widgets/ToastManager';
 import { fetcher } from './_fetcher';
 
+import  useProductStore  from './productStore';
+import useRecipeStore  from './recipeStore';
+
+function updateStoresAfterLogin () {
+  const productStore = useProductStore.getState();
+  const recipeStore = useRecipeStore.getState();
+
+  productStore.fetchUserProducts();
+  productStore.fetchPublicProducts();
+  recipeStore.fetchUserRecipes();
+  recipeStore.fetchPublicRecipes();
+}
+
+
 export const useUserStore = create((set) => ({
   G_IsUserLoggedIn: false,
   G_UserName: 'NIEZALOG',
@@ -20,7 +34,9 @@ export const useUserStore = create((set) => ({
       (res) => {
         if (res?.isLogged) {
           set({ G_IsUserLoggedIn: true, G_UserName: res.userName });
+          
         }
+        console.log("asdasda",res);
       }
     );
   },
@@ -33,6 +49,7 @@ export const useUserStore = create((set) => ({
       (res) => {
         set({ G_IsUserLoggedIn: true, G_UserName: user });
         useToast_noReact(`Welcome ${user} !`);
+        updateStoresAfterLogin();
       }
     );
   },
@@ -45,6 +62,7 @@ export const useUserStore = create((set) => ({
       (res) => {
         set({ G_IsUserLoggedIn: true, G_UserName: res.userName });
         useToast_noReact(`Welcome ${user}, your account was created !`);
+        updateStoresAfterLogin();
       }
     );
   },
@@ -57,6 +75,7 @@ export const useUserStore = create((set) => ({
       (res) => {
         set({ G_IsUserLoggedIn: false, G_UserName: 'Anonim' });
         useToast_noReact(`You are now logged out.`);
+        updateStoresAfterLogin();
       }
     );
   }

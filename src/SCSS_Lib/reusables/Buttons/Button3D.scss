@@ -37,16 +37,16 @@
   
   &.active {
     @include Button3D-modFontColor(rgb(255, 255, 255),
-    -2px 0 5px #ff0,
-    2px 0 5px #ff0,
-    0 -2px 5px #ff0,
-    0 2px 5px #ff0,
+    -2px 0 15px #ff0,
+    2px 0 15px #ff0,
+    0 -2px 15px #ff0,
+    0 2px 15px #ff0,
     )
   }
   
   &.AddProductButton{
     @include Button3D-modHeight(40px);
-    @include Button3D-modColor(rgb(202, 200, 89), rgb(28, 110, 42)); 
+    @include Button3D-modColor(rgb(25, 255, 36), rgb(15, 17, 2)); 
     font-weight: 600;
   }
 

@@ -6,6 +6,7 @@ import { fetcher } from './_fetcher.js';
 const useRecipeStore = create((set, get) => ({
     userRecipes: [],
     publicRecipes: [],
+    latestRecipes: [],
     
     IsFormRecipeInEditMode: false,
     RecipeDataToEdit: null,
@@ -28,6 +29,15 @@ const useRecipeStore = create((set, get) => ({
             null,
             "fetch user recipes",
             (res) => set({ userRecipes: res.msg })
+        );
+    },
+    
+    fetchLatestRecipes: () => {
+        fetcher(
+            API_URLs.recipes.getLatestRecipes,
+            null,
+            "fetch latest recipes",
+            (res) => set({ latestRecipes: res.msg })
         );
     },
 

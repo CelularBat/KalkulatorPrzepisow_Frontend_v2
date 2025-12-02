@@ -59,15 +59,15 @@ const {
 
     
 
-    function onProductFormSubmit(event,formData){
+    async function onProductFormSubmit(event,formData){
         event.preventDefault();
         if (IsProductFormInEditMode) {
-            updateProduct(formData)
+            const res = await updateProduct(formData);
+            if (res.status === 1) setIsProductFormVisible(false);
         } else {
-            addProduct(formData)
-        }
-        
-        setIsProductFormVisible(false);
+            const res = await addProduct(formData);
+            if (res.status === 1) setIsProductFormVisible(false);
+        } 
     }
 
     function onProductFormClose(){
@@ -94,7 +94,7 @@ const {
           
             { IsProductFormVisible &&
             <Overlay onClose={onProductFormClose}>
-                <ProductForm {...{IsProductFormInEditMode,EditRowData,onProductFormSubmit,onProductFormClose}}/>
+                <ProductForm {...{IsProductFormInEditMode,EditRowData,onProductFormSubmit}}/>
             </Overlay>
                 
             }

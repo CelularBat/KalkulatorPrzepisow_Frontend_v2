@@ -7,10 +7,10 @@
     padding-left: 30px;
     
     min-height: 50px;
-    filter:saturate(1);
+    filter:saturate(0.95) opacity(0.95);
     z-index: 0;
 
-    width:95%;
+    width:100%;
     background: $gv_primaryColorGradient_reversed;
     border-radius: 20px;
 

@@ -8,7 +8,7 @@ const API_URLs = {
     },
     products: {
         getUserProducts: {url: "/api/getuserp",method:"GET"},
-        getPublicProducts: {url: "/api/getpubp",method:"GET"}
+        getPublicProducts: {url: "/api/getpubp",method:"GET"},
     },
     recipe: {
         add:  {url:'/api/addrecipe',method:"POST"},
@@ -17,7 +17,8 @@ const API_URLs = {
     },
     recipes: {
         getUserRecipes: {url: "/api/getuserr",method:"GET"},
-        getPublicRecipes: {url: "/api/getpubr",method:"GET"}
+        getPublicRecipes: {url: "/api/getpubr",method:"GET"},
+        getLatestRecipes: {url: "/api/getlatest",method:"GET"}
     },
     user: {
         login:  {url:'/api/login',method:"POST"},

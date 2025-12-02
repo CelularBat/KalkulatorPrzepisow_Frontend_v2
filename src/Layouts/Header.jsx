@@ -22,6 +22,7 @@ function Header({}) {
            if (result && result.isLogged){
               showMsg(`Welcome back ${result.userName} !`);
            }
+           console.log(result);
         });
      },[]);
 
